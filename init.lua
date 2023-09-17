@@ -29,6 +29,7 @@ require("lazy").setup({
   { 'nvim-treesitter/playground' },
   { 'theprimeagen/harpoon' },
   { 'tpope/vim-fugitive' },
+  { 'sindrets/diffview.nvim'},
   { 'tpope/vim-surround' },
   { '/lewis6991/gitsigns.nvim' },
   {
