@@ -73,3 +73,7 @@ vim.keymap.set("n", "<leader>ms", "<cmd>CellularAutomaton scramble<CR>");
 vim.keymap.set("n", "<S-F5>","<cmd>CompilerOpen<CR>")
 vim.keymap.set("n", "<F5>","<cmd>CompilerRedo<CR>")
 vim.keymap.set("n", "<F6>","<cmd>!node .<CR>")
+
+vim.keymap.set("n", "<leader>d<leader>","<cmd>DiffviewOpen<CR>")
+vim.keymap.set("n", "<leader>dq","<cmd>DiffviewClose<CR>")
+vim.keymap.set("n", "<leader>dc","<cmd>DiffviewFileHistory<CR>")
