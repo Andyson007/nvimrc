@@ -3,17 +3,18 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.g.user_emmet_leader_key = "<C-Z>"
 
-vim.g.user_emmet_expandabbr_key = '<C-S>'
 vim.g.user_emmet_update_tag = '<C-Z>u'
 vim.g.user_emmet_balancetaginward_key = '<C-D>'
-vim.g.user_emmet_balancetagoutward_key = '<C-S-D>'
+
 vim.g.user_emmet_next_key = '<C-n>'
+
+vim.keymap.set("n", "<C-s>", ":Emmet ")
+vim.keymap.set("i", "<C-s>", "<Esc>:Emmet ")
 
 vim.keymap.set({"i", "v"}, "uh", "<Esc>")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -63,14 +64,12 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader>ml", "<cmd>CellularAutomaton game_of_life<CR>");
-
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
+vim.keymap.set("n", "<leader>ms", "<cmd>CellularAutomaton scramble<CR>");
 
 vim.keymap.set("n", "<S-F5>","<cmd>CompilerOpen<CR>")
 vim.keymap.set("n", "<F5>","<cmd>CompilerRedo<CR>")
+vim.keymap.set("n", "<F6>","<cmd>!node .<CR>")
