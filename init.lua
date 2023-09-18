@@ -29,7 +29,7 @@ require("lazy").setup({
   { 'nvim-treesitter/playground' },
   { 'theprimeagen/harpoon' },
   { 'tpope/vim-fugitive' },
-  { 'sindrets/diffview.nvim'},
+  { 'sindrets/diffview.nvim' },
   { 'tpope/vim-surround' },
   { '/lewis6991/gitsigns.nvim' },
   {
@@ -54,8 +54,11 @@ require("lazy").setup({
       { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },     -- Required
-      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-cmdline' },
+      { 'hrsh7th/nvim-cmp' },
       {
         "L3MON4D3/LuaSnip",
         -- follow latest release.
@@ -116,26 +119,16 @@ require("lazy").setup({
   },
   { "Alexis12119/nightly.nvim" },
   { 'eandrju/cellular-automaton.nvim' },
-  {
-    'rasulomaroff/telepath.nvim',
-    dependencies = 'ggandor/leap.nvim',
-    -- there's no sence in using lazy loading since telepath won't load the main module
-    -- until you actually use mappings
-    lazy = false,
-    config = function()
-      require('telepath').use_default_mappings()
-    end
-  },
   { 'xiyaowong/transparent.nvim' },
   {
-  'pwntester/octo.nvim',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
-    'nvim-tree/nvim-web-devicons',
-  },
-  config = function ()
-    require"octo".setup()
-  end
-}
+    'pwntester/octo.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require "octo".setup()
+    end
+  }
 })

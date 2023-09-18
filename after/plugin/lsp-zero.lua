@@ -9,7 +9,6 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
   ['<CR>'] = cmp.mapping.confirm({ select = false }),
   ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-  ['<C-y>'] = cmp.mapping.complete(),
 })
 
 lsp.set_preferences({
