@@ -16,7 +16,10 @@ lsp.set_preferences({
 })
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+  mapping = cmp_mappings,
+  completion = {
+    completeopt = 'menu,menuone,noinsert'
+  }
 })
 
 lsp.on_attach(function(client, bufnr)

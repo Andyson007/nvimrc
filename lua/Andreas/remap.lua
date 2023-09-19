@@ -4,12 +4,8 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.g.user_emmet_leader_key = "<C-Z>"
 
 vim.g.user_emmet_update_tag = '<C-Z>u'
-vim.g.user_emmet_balancetaginward_key = '<C-D>'
 
 vim.g.user_emmet_next_key = '<C-n>'
-
-vim.keymap.set("n", "<C-s>", ":Emmet ")
-vim.keymap.set("i", "<C-s>", "<Esc>:Emmet ")
 
 vim.keymap.set({"i", "v"}, "uh", "<Esc>")
 
