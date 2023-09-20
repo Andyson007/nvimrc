@@ -101,41 +101,23 @@ require("lazy").setup({
     dependencies = { "stevearc/overseer.nvim" },
     opts = {},
   },
-  { -- The task runner we use
-    "stevearc/overseer.nvim",
-    commit = "3047ede61cc1308069ad1184c0d447ebee92d749",
-    cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
-    opts = {
-      task_list = {
-        direction = "bottom",
-        min_height = 25,
-        max_height = 25,
-        default_detail = 1,
-        bindings = {
-          ["q"] = function() vim.cmd("OverseerClose") end,
-          ["t"] = function() vim.cmd("<C-w>l") end
-        },
-      },
-    },
-  },
   { "Alexis12119/nightly.nvim" },
   { 'eandrju/cellular-automaton.nvim' },
   { 'xiyaowong/transparent.nvim' },
-  {
-    'pwntester/octo.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function()
-      require "octo".setup()
-    end
-  },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     dependencies = {
       "nvim-treesitter/nvim-treesitter"
     },
+  },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",       -- required
+      "nvim-telescope/telescope.nvim", -- optional
+      "sindrets/diffview.nvim",      -- optional
+      "ibhagwan/fzf-lua",            -- optional
+    },
+    config = true
   }
 })
