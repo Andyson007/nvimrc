@@ -95,12 +95,6 @@ require("lazy").setup({
     lazy = false,
   },
   { "lukas-reineke/indent-blankline.nvim" },
-  { -- This plugin
-    "Zeioth/compiler.nvim",
-    cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
-    dependencies = { "stevearc/overseer.nvim" },
-    opts = {},
-  },
   { "Alexis12119/nightly.nvim" },
   { 'eandrju/cellular-automaton.nvim' },
   { 'xiyaowong/transparent.nvim' },
@@ -119,5 +113,7 @@ require("lazy").setup({
       "ibhagwan/fzf-lua",            -- optional
     },
     config = true
-  }
+  },
+  { 'voldikss/vim-floaterm' },
+  { 'nvim-tree/nvim-web-devicons' },
 })
