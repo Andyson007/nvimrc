@@ -104,16 +104,24 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter"
     },
   },
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",       -- required
-      "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim",      -- optional
-      "ibhagwan/fzf-lua",            -- optional
-    },
-    config = true
-  },
   { 'voldikss/vim-floaterm' },
   { 'nvim-tree/nvim-web-devicons' },
+  {
+    'ggandor/flit.nvim',
+    dependencies = {
+      'ggandor/leap.nvim'
+    }
+  },
+  {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    keys = {
+      { "<leader>o", "<cmd>Octo<CR>",desc = "Octo" }
+    }
+  },
+  { 'HiPhish/nvim-ts-rainbow2' },
 })
