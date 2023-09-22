@@ -1,20 +1,20 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
     lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.mapleader = ' ' -- Make sure to set `mapleader` before lazy so your mappings are correct
 require('Andreas')
 
-require("lazy").setup({
+require('lazy').setup({
   {
     'nvim-lua/plenary.nvim'
   },
@@ -24,7 +24,7 @@ require("lazy").setup({
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
   {
-    "nvim-treesitter/nvim-treesitter",
+    'nvim-treesitter/nvim-treesitter',
   },
   { 'nvim-treesitter/playground' },
   { 'theprimeagen/harpoon' },
@@ -33,15 +33,15 @@ require("lazy").setup({
   { 'tpope/vim-surround' },
   { '/lewis6991/gitsigns.nvim' },
   {
-    "luckasRanarison/nvim-devdocs",
+    'luckasRanarison/nvim-devdocs',
     dependecies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-treesitter/nvim-treesitter",
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-treesitter/nvim-treesitter',
     },
     opts = {
-      previewer_cmd = "glow",
-      cmd_args = { "-s", "dark", "-w", "80" }
+      previewer_cmd = 'glow',
+      cmd_args = { '-s', 'dark', '-w', '80' }
     }
   },
   {
@@ -61,13 +61,13 @@ require("lazy").setup({
       { 'hrsh7th/cmp-cmdline' },
       { 'hrsh7th/nvim-cmp' },
       {
-        "L3MON4D3/LuaSnip",
+        'L3MON4D3/LuaSnip',
         -- follow latest release.
-        version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        version = '2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
         -- install jsregexp (optional!).
-        build = "make install_jsregexp",
+        build = 'make install_jsregexp',
         dependencies = {
-          "rafamadriz/friendly-snippets",
+          'rafamadriz/friendly-snippets',
           dependencies = {
             'saadparwaiz1/cmp_luasnip'
           }
@@ -79,10 +79,10 @@ require("lazy").setup({
     'windwp/nvim-ts-autotag',
     opts = {}
   },
-  { "mattn/emmet-vim" },
+  { 'mattn/emmet-vim' },
   {
     'windwp/nvim-autopairs',
-    event = "InsertEnter",
+    event = 'InsertEnter',
     opts = {} -- this is equalent to setup({}) function
   },
   { 'norcalli/nvim-colorizer.lua' },
@@ -94,34 +94,50 @@ require("lazy").setup({
     },
     lazy = false,
   },
-  { "lukas-reineke/indent-blankline.nvim" },
-  { "Alexis12119/nightly.nvim" },
+  { 'lukas-reineke/indent-blankline.nvim' },
+  { 'Alexis12119/nightly.nvim' },
   { 'eandrju/cellular-automaton.nvim' },
   { 'xiyaowong/transparent.nvim' },
   {
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    'nvim-treesitter/nvim-treesitter-textobjects',
     dependencies = {
-      "nvim-treesitter/nvim-treesitter"
+      'nvim-treesitter/nvim-treesitter'
     },
   },
   { 'voldikss/vim-floaterm' },
   { 'nvim-tree/nvim-web-devicons' },
   {
-    'ggandor/flit.nvim',
+    'ggandor/leap-spooky.nvim',
     dependencies = {
       'ggandor/leap.nvim'
     }
   },
-  {
-    'pwntester/octo.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-    keys = {
-      { "<leader>o", "<cmd>Octo<CR>",desc = "Octo" }
-    }
-  },
   { 'HiPhish/nvim-ts-rainbow2' },
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    ---@type Flash.Config
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { 's',     mode = { 'n', 'o', 'x' }, function() require('flash').jump() end,              desc = 'Flash' },
+      { 'S',     mode = { 'n', 'o', 'x' }, function() require('flash').treesitter() end,        desc = 'Flash Treesitter' },
+      { 'r',     mode = 'o',               function() require('flash').remote() end,            desc = 'Remote Flash' },
+      { 'R',     mode = { 'o', 'x' },      function() require('flash').treesitter_search() end,
+                                                                                                  desc =
+        'Treesitter Search' },
+      { '<c-s>', mode = { 'c' },           function() require('flash').toggle() end,            desc =
+      'Toggle Flash Search' },
+    },
+  },
+  {
+  'NeogitOrg/neogit',
+  dependencies = {
+    'nvim-lua/plenary.nvim',         -- required
+    'nvim-telescope/telescope.nvim', -- optional
+    'sindrets/diffview.nvim',        -- optional
+    'ibhagwan/fzf-lua',              -- optional
+  },
+  config = true
+}
 })
