@@ -114,7 +114,12 @@ require('lazy').setup({
       {
         'R',
         mode = { 'o', 'x' },
-        function() require('flash').treesitter_search() end,
+        function() require('flash').treesitter_search({
+          remote_op = {
+            restore = true,
+            motion = true,
+          }
+        }) end,
         desc = 'Treesitter Search'
       },
     },
