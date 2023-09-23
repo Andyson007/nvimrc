@@ -23,9 +23,7 @@ require('lazy').setup({
     tag = '0.1.2',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
-  {
-    'nvim-treesitter/nvim-treesitter',
-  },
+  { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-treesitter/playground' },
   { 'theprimeagen/harpoon' },
   { 'tpope/vim-fugitive' },
@@ -86,7 +84,6 @@ require('lazy').setup({
     opts = {} -- this is equalent to setup({}) function
   },
   { 'norcalli/nvim-colorizer.lua' },
-  { 'junegunn/rainbow_parentheses.vim' },
   {
     'numToStr/Comment.nvim',
     opts = {
@@ -107,37 +104,40 @@ require('lazy').setup({
   { 'voldikss/vim-floaterm' },
   { 'nvim-tree/nvim-web-devicons' },
   {
-    'ggandor/leap-spooky.nvim',
-    dependencies = {
-      'ggandor/leap.nvim'
-    }
-  },
-  { 'HiPhish/nvim-ts-rainbow2' },
-  {
     'folke/flash.nvim',
     event = 'VeryLazy',
     ---@type Flash.Config
     opts = {},
     -- stylua: ignore
     keys = {
-      { 's',     mode = { 'n', 'o', 'x' }, function() require('flash').jump() end,              desc = 'Flash' },
-      { 'S',     mode = { 'n', 'o', 'x' }, function() require('flash').treesitter() end,        desc = 'Flash Treesitter' },
-      { 'r',     mode = 'o',               function() require('flash').remote() end,            desc = 'Remote Flash' },
-      { 'R',     mode = { 'o', 'x' },      function() require('flash').treesitter_search() end,
-                                                                                                  desc =
-        'Treesitter Search' },
-      { '<c-s>', mode = { 'c' },           function() require('flash').toggle() end,            desc =
-      'Toggle Flash Search' },
+      { 'S', mode = { 'n', 'o', 'x' }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
+      {
+        'R',
+        mode = { 'o', 'x' },
+        function() require('flash').treesitter_search() end,
+        desc = 'Treesitter Search'
+      },
     },
   },
+  { 'ggandor/leap.nvim' },
   {
-  'NeogitOrg/neogit',
-  dependencies = {
-    'nvim-lua/plenary.nvim',         -- required
-    'nvim-telescope/telescope.nvim', -- optional
-    'sindrets/diffview.nvim',        -- optional
-    'ibhagwan/fzf-lua',              -- optional
+    'rasulomaroff/telepath.nvim',
+    dependencies = 'ggandor/leap.nvim',
+    -- there's no sence in using lazy loading since telepath won't load the main module
+    -- until you actually use mappings
+    lazy = false,
+    config = function()
+      require('telepath').use_default_mappings()
+    end
   },
-  config = true
-}
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim',         -- required
+      'nvim-telescope/telescope.nvim', -- optional
+      'sindrets/diffview.nvim',        -- optional
+      'ibhagwan/fzf-lua',              -- optional
+    },
+    config = true
+  },
 })
