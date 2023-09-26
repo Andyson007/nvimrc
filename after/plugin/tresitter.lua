@@ -1,4 +1,13 @@
 require 'nvim-treesitter.configs'.setup {
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<CR>",
+      node_incremental = "<CR>",
+      scope_incremental = "<S-CR>",
+      node_decremental = "<BS>",
+    },
+  },
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
   ensure_installed = {
@@ -18,4 +27,96 @@ require 'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  },
 }
+
+local q = require("vim.treesitter.query")
+
+local function getattributes()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local language_tree = vim.treesitter.get_parser(bufnr, 'css')
+  local syntax_tree = language_tree:parse();
+  local root = syntax_tree[1]:root()
+  local query = vim.treesitter.query.parse('css', [[
+(rule_set
+  (selectors
+       ) @name
+@method (#offset! @method))
+]])
+
+  -- local attributes = {}
+  -- local meta = {}
+  local ret = {}
+  for _, captures, metadata in query:iter_matches(root, bufnr) do
+    -- print(vim.inspect(q.get_node_text(captures[1], bufnr)))
+    local temp = {}
+    table.insert(temp,q.get_node_text(captures[1],bufnr))
+    table.insert(temp,metadata)
+    table.insert(ret,temp)
+    -- table.insert(meta,metadata)
+    -- table.insert(attributes, q.get_node_text(captures[1], bufnr))
+  end
+  return ret
+  -- return { attributes,meta }
+end
+
+-- print(vim.inspect(getattributes()[2][3][2].range[1]))
+local pickers = require "telescope.pickers"
+local finders = require "telescope.finders"
+local conf = require("telescope.config").values
+local actions = require "telescope.actions"
+local action_state = require "telescope.actions.state"
+
+-- our picker function: colors
+CssAttributes = function(opts)
+  opts = opts or {}
+  local attributes = getattributes()
+  pickers.new(opts, {
+    prompt_title = "attributes",
+    preview = conf.grep_previewer(opts),
+    finder = finders.new_table {
+      results = attributes,
+      entry_maker = function(entry)
+          -- vim.fn.input(vim.inspect(entry[2][2].range[1]))
+        return {
+          value = entry[1],
+          display = entry[1],
+          ordinal = entry[1],
+          lnum = entry[2][2].range[1]+1,
+        }
+      end
+    },
+    sorter = conf.generic_sorter(),
+    attach_mappings = function(prompt_bufnr, map)
+      actions.select_default:replace(function()
+        actions.close(prompt_bufnr)
+        local selection = action_state.get_selected_entry()
+        -- vim.fn.input(vim.inspect(selection))
+        vim.cmd(tostring(selection.lnum))
+      end)
+      return true
+    end,
+  }):find()
+end
+
+-- to execute the function
+-- cssAttributes(require("telescope.themes").get_dropdown {})
+vim.keymap.set("n", "<leader>pa","<cmd>lua CssAttributes(require'telescope.themes'.get_dropdown {})<CR>")
+-- vim.keymap.set("n", "<leader>pa","<cmd>lua CssAttributes()<CR>")

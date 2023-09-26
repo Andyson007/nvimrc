@@ -19,7 +19,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("n", "<leader>w", ":w<CR>")
-vim.keymap.set("n", "<leader>W", ":w!<CR>")
+vim.keymap.set("n", "<leader>W", ":wall<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>Q", ":q!<CR>")
 vim.keymap.set("n", "<leader>r", ":so<CR>")
@@ -73,3 +73,7 @@ vim.keymap.set("n", "<F6>","<cmd>!node .<CR>")
 vim.keymap.set("n", "<leader>d<leader>","<cmd>DiffviewOpen<CR>")
 vim.keymap.set("n", "<leader>dq","<cmd>DiffviewClose<CR>")
 vim.keymap.set("n", "<leader>dc","<cmd>DiffviewFileHistory<CR>")
+
+
+vim.keymap.set("n", "<leader>l","<cmd>Lazy<CR>")
+vim.keymap.set("n", "<leader>M","<cmd>Mason<CR>")

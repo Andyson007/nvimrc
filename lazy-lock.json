@@ -37,7 +37,6 @@
   "telepath.nvim": { "branch": "main", "commit": "f3c20113470d41981b8410370ddae62983924e64" },
   "telescope.nvim": { "branch": "master", "commit": "776b509f80dd49d8205b9b0d94485568236d1192" },
   "transparent.nvim": { "branch": "main", "commit": "3af6232c8d39d51062702e875ff6407c1eeb0391" },
-  "vim-be-good": { "branch": "master", "commit": "c290810728a4f75e334b07dc0f3a4cdea908d351" },
   "vim-floaterm": { "branch": "master", "commit": "eeb3f6b5c98bde26752ebe0fbe1359fc974cbdcd" },
   "vim-fugitive": { "branch": "master", "commit": "572c8510123cbde02e8a1dafcd376c98e1e13f43" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" }
