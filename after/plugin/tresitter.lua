@@ -47,59 +47,46 @@ require 'nvim-treesitter.configs'.setup {
   },
 }
 
-local q = require("vim.treesitter.query")
-
-local function getattributes()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local language_tree = vim.treesitter.get_parser(bufnr, 'css')
-  local syntax_tree = language_tree:parse();
-  local root = syntax_tree[1]:root()
-  local query = vim.treesitter.query.parse('css', [[
-(rule_set
-  (selectors
-       ) @name
-@method (#offset! @method))
-]])
-
-  -- local attributes = {}
-  -- local meta = {}
-  local ret = {}
-  for _, captures, metadata in query:iter_matches(root, bufnr) do
-    -- print(vim.inspect(q.get_node_text(captures[1], bufnr)))
-    local temp = {}
-    table.insert(temp,q.get_node_text(captures[1],bufnr))
-    table.insert(temp,metadata)
-    table.insert(ret,temp)
-    -- table.insert(meta,metadata)
-    -- table.insert(attributes, q.get_node_text(captures[1], bufnr))
-  end
-  return ret
-  -- return { attributes,meta }
-end
-
--- print(vim.inspect(getattributes()[2][3][2].range[1]))
 local pickers = require "telescope.pickers"
 local finders = require "telescope.finders"
 local conf = require("telescope.config").values
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 
--- our picker function: colors
-CssAttributes = function(opts)
+local q = require("vim.treesitter.query")
+
+local function getattributesQuery(query)
+  local bufnr = vim.api.nvim_get_current_buf()
+  local language_tree = vim.treesitter.get_parser(bufnr, 'css')
+  local syntax_tree = language_tree:parse();
+  local root = syntax_tree[1]:root()
+  local ret = {}
+  for _, captures, metadata in query:iter_matches(root, bufnr) do
+    local temp = {}
+    table.insert(temp, q.get_node_text(captures[1], bufnr))
+    table.insert(temp, metadata)
+    table.insert(ret, temp)
+  end
+  return ret
+end
+local function getattributes(lang, query)
+  return getattributesQuery(vim.treesitter.query.parse(lang,query))
+end
+
+local findAttributes = function(opts, attributes)
   opts = opts or {}
-  local attributes = getattributes()
   pickers.new(opts, {
     prompt_title = "attributes",
     preview = conf.grep_previewer(opts),
     finder = finders.new_table {
       results = attributes,
       entry_maker = function(entry)
-          -- vim.fn.input(vim.inspect(entry[2][2].range[1]))
+        -- vim.fn.input(vim.inspect(entry[2][2].range[1]))
         return {
           value = entry[1],
           display = entry[1],
           ordinal = entry[1],
-          lnum = entry[2][2].range[1]+1,
+          lnum = entry[2][2].range[1] + 1,
         }
       end
     },
@@ -116,7 +103,13 @@ CssAttributes = function(opts)
   }):find()
 end
 
--- to execute the function
--- cssAttributes(require("telescope.themes").get_dropdown {})
-vim.keymap.set("n", "<leader>pa","<cmd>lua CssAttributes(require'telescope.themes'.get_dropdown {})<CR>")
--- vim.keymap.set("n", "<leader>pa","<cmd>lua CssAttributes()<CR>")
+CssAttributes = function(opts)
+  return findAttributes(opts, getattributes('css', [[
+(rule_set
+  (selectors
+       ) @name
+@method (#offset! @method))
+]]))
+end
+
+vim.keymap.set("n", "<leader>pa", "<cmd>lua CssAttributes(require'telescope.themes'.get_dropdown {})<CR>")
