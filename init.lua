@@ -32,7 +32,8 @@ require('lazy').setup({
   { '/lewis6991/gitsigns.nvim' },
   {
     'luckasRanarison/nvim-devdocs',
-    dependecies = {
+    event="VeryLazy",
+    dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
       'nvim-treesitter/nvim-treesitter',
@@ -91,7 +92,8 @@ require('lazy').setup({
     },
     lazy = false,
   },
-  { 'lukas-reineke/indent-blankline.nvim' },
+  { 'lukas-reineke/indent-blankline.nvim', main = "ibl", opts = {} },
+  { 'HiPhish/rainbow-delimiters.nvim' },
   { 'Alexis12119/nightly.nvim' },
   { 'eandrju/cellular-automaton.nvim' },
   { 'xiyaowong/transparent.nvim' },
@@ -110,16 +112,18 @@ require('lazy').setup({
     opts = {},
     -- stylua: ignore
     keys = {
-      { 'S', mode = { 'n', 'o',  }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
+      { 'S', mode = { 'n', 'o', }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
       {
         'R',
         mode = { 'o', 'x' },
-        function() require('flash').treesitter_search({
-          remote_op = {
-            restore = true,
-            motion = true,
-          }
-        }) end,
+        function()
+          require('flash').treesitter_search({
+            remote_op = {
+              restore = true,
+              motion = true,
+            }
+          })
+        end,
         desc = 'Treesitter Search'
       },
     },
@@ -136,13 +140,20 @@ require('lazy').setup({
     end
   },
   {
-    'NeogitOrg/neogit',
-    dependencies = {
-      'nvim-lua/plenary.nvim',         -- required
-      'nvim-telescope/telescope.nvim', -- optional
-      'sindrets/diffview.nvim',        -- optional
-      'ibhagwan/fzf-lua',              -- optional
-    },
-    config = true
+    "NStefan002/speedtyper.nvim",
+    cmd = "Speedtyper",
+    opts = { }
+  },
+  { 'mbbill/undotree' },
+  { 'harrisoncramer/jump-tag' },
+  { 'vimwiki/vimwiki' },
+  {
+    "dstein64/vim-startuptime",
+    -- lazy-load on a command
+    cmd = "StartupTime",
+    -- init is called during startup. Configuration for vim plugins typically should be set in an init function
+    init = function()
+      vim.g.startuptime_tries = 10
+    end,
   },
 })

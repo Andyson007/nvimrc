@@ -17,6 +17,9 @@ opt.smartindent = true
 opt.wrap = false
 
 opt.swapfile = false
+opt.backup = false
+opt.undofile = true
+opt.undodir = "C:/Users/Andy/temp/.vim/undodir"
 
 opt.hlsearch = false
 opt.incsearch = true
@@ -38,3 +41,5 @@ vim.cmd [[
 		let &shellpipe  = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
 		set shellquote= shellxquote=
 ]]
+
+opt.shadafile = "NONE"
