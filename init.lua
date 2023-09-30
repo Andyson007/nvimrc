@@ -9,6 +9,7 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+-- TODO test
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = ' ' -- Make sure to set `mapleader` before lazy so your mappings are correct
@@ -32,7 +33,7 @@ require('lazy').setup({
   { '/lewis6991/gitsigns.nvim' },
   {
     'luckasRanarison/nvim-devdocs',
-    event="VeryLazy",
+    event = "VeryLazy",
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
@@ -142,11 +143,10 @@ require('lazy').setup({
   {
     "NStefan002/speedtyper.nvim",
     cmd = "Speedtyper",
-    opts = { }
+    opts = {}
   },
   { 'mbbill/undotree' },
   { 'harrisoncramer/jump-tag' },
-  { 'vimwiki/vimwiki' },
   {
     "dstein64/vim-startuptime",
     -- lazy-load on a command
@@ -155,5 +155,25 @@ require('lazy').setup({
     init = function()
       vim.g.startuptime_tries = 10
     end,
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+  { 'AndrewRadev/switch.vim' },
+  { 'monaqa/dial.nvim' },
+  { "SmiteshP/nvim-navic" },
+  {
+    "SmiteshP/nvim-navbuddy",
+
+    cmd = "Navbuddy",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim"
+    },
+    opts = { lsp = { auto_attach = true } }
   },
 })
