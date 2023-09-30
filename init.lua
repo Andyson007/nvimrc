@@ -30,7 +30,7 @@ require('lazy').setup({
   { 'tpope/vim-fugitive' },
   { 'sindrets/diffview.nvim' },
   { 'tpope/vim-surround' },
-  { '/lewis6991/gitsigns.nvim' },
+  { 'lewis6991/gitsigns.nvim' },
   {
     'luckasRanarison/nvim-devdocs',
     event = "VeryLazy",
@@ -77,26 +77,31 @@ require('lazy').setup({
   },
   {
     'windwp/nvim-ts-autotag',
+    event = { "InsertEnter" },
     opts = {}
   },
-  { 'mattn/emmet-vim' },
+  {
+    'mattn/emmet-vim',
+    event = "InsertEnter"
+  },
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-    opts = {} -- this is equalent to setup({}) function
+    opts = {}
   },
   { 'norcalli/nvim-colorizer.lua' },
   {
     'numToStr/Comment.nvim',
-    opts = {
-      -- add any options here
-    },
+    opts = {},
     lazy = false,
   },
   { 'lukas-reineke/indent-blankline.nvim', main = "ibl", opts = {} },
   { 'HiPhish/rainbow-delimiters.nvim' },
   { 'Alexis12119/nightly.nvim' },
-  { 'eandrju/cellular-automaton.nvim' },
+  {
+    'eandrju/cellular-automaton.nvim',
+    event = 'VeryLazy'
+  },
   { 'xiyaowong/transparent.nvim' },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -129,7 +134,6 @@ require('lazy').setup({
       },
     },
   },
-  { 'ggandor/leap.nvim' },
   {
     'rasulomaroff/telepath.nvim',
     dependencies = 'ggandor/leap.nvim',
@@ -157,23 +161,46 @@ require('lazy').setup({
     end,
   },
   {
-    "kdheepak/lazygit.nvim",
-    -- optional for floating window border decoration
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    'AndrewRadev/switch.vim',
+    cmd = "Switch"
   },
-  { 'AndrewRadev/switch.vim' },
-  { 'monaqa/dial.nvim' },
+  {
+    'monaqa/dial.nvim',
+    cmd = {
+      "DialDecrement",
+      "DialIncrement",
+    }
+  },
   { "SmiteshP/nvim-navic" },
   {
     "SmiteshP/nvim-navbuddy",
 
-    cmd = "Navbuddy",
     dependencies = {
       "SmiteshP/nvim-navic",
       "MunifTanjim/nui.nvim"
     },
     opts = { lsp = { auto_attach = true } }
+  },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "UIEnter" },
+    config = function()
+      require("hlchunk").setup({
+        blank = {
+          enable = false
+        },
+        indent = {
+          enable = false
+        },
+        line_num = {
+          style = "#71ab2b",
+        }
+      })
+    end
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
   },
 })
