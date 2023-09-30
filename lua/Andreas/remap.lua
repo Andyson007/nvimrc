@@ -43,7 +43,6 @@ keymap("n", "<leader>bQ", ":bd!<CR>")
 keymap("n", "<leader>bn", ":bn<CR>")
 keymap("n", "<leader>bp", ":bp<CR>")
 
--- next greatest remap ever : asbjornHaland
 keymap({ "n", "v" }, "<leader>y", [["+y]])
 keymap("n", "<leader>Y", [["+Y]])
 
@@ -54,7 +53,6 @@ keymap("n", "<leader>P", [["+P]])
 keymap({ "n", "v" }, "<leader>d", [["_d]])
 
 keymap("n", "Q", "<nop>")
-keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 keymap("n", "<leader>f", vim.lsp.buf.format)
 
 keymap("n", "<C-k>", "<cmd>cnext<CR>zz")
@@ -78,4 +76,4 @@ keymap("n", "<leader>dc", "<cmd>DiffviewFileHistory<CR>")
 
 
 keymap("n", "<leader>l", "<cmd>Lazy<CR>")
-keymap("n", "<leader>M", "<cmd>Mason<CR>")
+keymap("n", "<leader>m", "<cmd>Mason<CR>")
