@@ -21,17 +21,3 @@ vim.keymap.set('n', '<leader>gt', builtin.git_stash, {})
 vim.keymap.set('n', '<leader>ps', function()
   builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
-
-local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
-
-local telescope = require("telescope")
-
-telescope.setup {
-  defaults = {
-    mappings = {
-      i = { ["<M-t>"] = trouble.open_with_trouble },
-      n = { ["<M-t>"] = trouble.open_with_trouble },
-    },
-  },
-}
