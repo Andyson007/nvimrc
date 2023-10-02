@@ -26,14 +26,10 @@ keymap("n", "<leader>q", ":q<CR>")
 keymap("n", "<leader>Q", ":q!<CR>")
 keymap("n", "<leader>r", ":so<CR>")
 
-keymap("n", "<S-h>", "<C-w>h")
-keymap("n", "<S-j>", "<C-w>j")
-keymap("n", "<S-k>", "<C-w>k")
-keymap("n", "<S-l>", "<C-w>l")
-
-keymap("i", "<C-j>", "<Down>")
-keymap("i", "<C-k>", "<Up>")
-keymap("i", "<C-l>", "<Right>")
+keymap("n", "<M-h>", "<C-w>h")
+keymap("n", "<M-j>", "<C-w>j")
+keymap("n", "<M-k>", "<C-w>k")
+keymap("n", "<M-l>", "<C-w>l")
 
 --buffer utils
 
