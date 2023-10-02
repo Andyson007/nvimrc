@@ -290,4 +290,12 @@ require('lazy').setup({
   },
   { 'stefandtw/quickfix-reflector.vim' },
   { 'kevinhwang91/nvim-bqf' },
+  {
+    'junegunn/fzf',
+    run = function()
+      vim.fn['fzf#install']()
+    end,
+  },
+  { 'chentoast/marks.nvim' },
 })
+-- tabout might be unneccesary
