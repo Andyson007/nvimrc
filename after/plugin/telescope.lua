@@ -1,5 +1,14 @@
 local builtin = require('telescope.builtin')
-require('telescope').setup {
+
+require('telescope').setup({
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = require('telescope.actions').close,
+        ["<C-R>"] = { "<Esc>dda", type = "command" },
+      },
+    },
+  },
   extensions = {
     fzf = {
       fuzzy = true,                   -- false will only do exact matching
@@ -8,8 +17,9 @@ require('telescope').setup {
       case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     }
-  }
-}
+  },
+})
+
 vim.keymap.set('n', '<leader>bb', builtin.builtin, {})
 vim.keymap.set('n', '<leader>tt', builtin.treesitter, {})
 vim.keymap.set('n', '<leader>pp', builtin.jumplist, {})

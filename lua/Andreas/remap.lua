@@ -56,12 +56,6 @@ keymap("n", "<C-j>", "<cmd>cprev<CR>zz")
 keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
 keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
 
--- keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
-keymap("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
-keymap("n", "<leader>ml", "<cmd>CellularAutomaton game_of_life<CR>");
-keymap("n", "<leader>ms", "<cmd>CellularAutomaton scramble<CR>");
-
 keymap("n", "<S-F5>", "<cmd>CompilerOpen<CR>")
 keymap("n", "<F5>", "<cmd>CompilerRedo<CR>")
 keymap("n", "<F6>", "<cmd>!node .<CR>")
@@ -70,6 +64,23 @@ keymap("n", "<leader>d<leader>", "<cmd>DiffviewOpen<CR>")
 keymap("n", "<leader>dq", "<cmd>DiffviewClose<CR>")
 keymap("n", "<leader>dc", "<cmd>DiffviewFileHistory<CR>")
 
+--quickfix
+keymap("n", "<leader>cn", "<cmd>silent cnext<CR>")
+keymap("n", "<leader>cp", "<cmd>silent cprevious<CR>")
+keymap("n", "<leader>e", function()
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+      vim.cmd "cclose"
+      return;
+    end
+  end
+  vim.cmd "copen"
+end)
+
+-- BS
+keymap("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+keymap("n", "<leader>ml", "<cmd>CellularAutomaton game_of_life<CR>");
+keymap("n", "<leader>ms", "<cmd>CellularAutomaton scramble<CR>");
 
 keymap("n", "<leader>l", "<cmd>Lazy<CR>")
 keymap("n", "<leader>m", "<cmd>Mason<CR>")
