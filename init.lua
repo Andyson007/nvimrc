@@ -9,7 +9,7 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
--- TODO test
+
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = ' ' -- Make sure to set `mapleader` before lazy so your mappings are correct
@@ -17,12 +17,19 @@ require('Andreas')
 
 require('lazy').setup({
   {
-    'nvim-lua/plenary.nvim'
+    'nvim-lua/plenary.nvim',
   },
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build =
+        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+      }
+    }
   },
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-treesitter/playground' },
@@ -61,7 +68,7 @@ require('lazy').setup({
       { 'hrsh7th/nvim-cmp' },
       {
         'L3MON4D3/LuaSnip',
-        event={ "InsertEnter" },
+        event = { "InsertEnter" },
         -- follow latest release.
         version = '2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
         -- install jsregexp (optional!).
@@ -281,5 +288,4 @@ require('lazy').setup({
     "folke/twilight.nvim",
     opts = {}
   },
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
 })
