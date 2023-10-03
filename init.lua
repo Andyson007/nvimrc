@@ -206,13 +206,6 @@ require('lazy').setup({
     end
   },
   {
-    'stevearc/oil.nvim',
-    opts = {},
-    cmd = "Oil",
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
-  {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
     opts = {

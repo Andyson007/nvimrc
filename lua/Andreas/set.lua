@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-opt.cmdheight = 0
+-- opt.cmdheight = 0
 opt.pumblend = 30
 opt.winblend = 30
 
@@ -45,3 +45,5 @@ vim.cmd [[
 ]]
 
 opt.shadafile = "NONE"
+
+vim.cmd[[ let g:netrw_list_hide = '^\.\+/$' ]]

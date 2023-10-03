@@ -10,7 +10,8 @@ local keymap = vim.keymap.set
 keymap("n", "<leader>pv", vim.cmd.Ex)
 
 keymap({ "i", "v" }, "uh", "<Esc>")
-keymap("i", "<C-l>","<C-o>")
+
+vim.cmd[[map H ^]]
 
 keymap("v", "J", ":m '>+1<CR>gv=gv")
 keymap("v", "K", ":m '<-2<CR>gv=gv")
@@ -78,10 +79,11 @@ keymap("n", "<leader>e", function()
   vim.cmd "copen"
 end)
 
+
 -- BS
 keymap("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 keymap("n", "<leader>ml", "<cmd>CellularAutomaton game_of_life<CR>");
 keymap("n", "<leader>ms", "<cmd>CellularAutomaton scramble<CR>");
-
+-- Self descriptive
 keymap("n", "<leader>l", "<cmd>Lazy<CR>")
 keymap("n", "<leader>m", "<cmd>Mason<CR>")
