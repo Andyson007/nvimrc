@@ -33,20 +33,26 @@ require('lazy').setup({
   { 'tpope/vim-fugitive' },
   { 'sindrets/diffview.nvim' },
   { 'tpope/vim-surround' },
-  { 'lewis6991/gitsigns.nvim' },
   {
-    'luckasRanarison/nvim-devdocs',
-    event = "VeryLazy",
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-treesitter/nvim-treesitter',
-    },
+    "lewis6991/gitsigns.nvim",
     opts = {
-      previewer_cmd = 'glow',
-      cmd_args = { '-s', 'dark', '-w', '80' }
-    }
+      preview_config = {
+        border = "none",
+      },
+    },
+  }, {
+  'luckasRanarison/nvim-devdocs',
+  event = "VeryLazy",
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    'nvim-treesitter/nvim-treesitter',
   },
+  opts = {
+    previewer_cmd = 'glow',
+    cmd_args = { '-s', 'dark', '-w', '80' }
+  }
+},
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
@@ -265,5 +271,15 @@ require('lazy').setup({
     config = function()
       require('crates').setup()
     end,
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts) require 'lsp_signature'.setup(opts) end
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   },
 })

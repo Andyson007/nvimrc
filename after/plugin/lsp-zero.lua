@@ -24,6 +24,7 @@ lsp.setup_nvim_cmp({
     { name = "path" },
     { name = "buffer" },
     { name = "nvim_lsp" },
+    { name = "luasnip" },
     { name = "crates" },
   },
 })

@@ -1,6 +1,6 @@
 local opt = vim.opt
 
--- opt.cmdheight = 0
+opt.cmdheight = 0
 opt.pumblend = 30
 opt.winblend = 30
 
