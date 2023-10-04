@@ -6,3 +6,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     vim.keymap.set("n", "<leader>r", "<cmd>FloatermSend cargo run<CR><cmd>FloatermToggle<CR>")
   end
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { "*.js"},
+  callback = function ()
+    vim.keymap.set("n", "<leader>r", "<cmd>FloatermSend node %<CR><cmd>FloatermToggle<CR>")
+  end
+})

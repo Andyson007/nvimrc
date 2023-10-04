@@ -13,8 +13,8 @@ keymap({ "i", "v" }, "uh", "<Esc>")
 
 vim.cmd [[map H ^]]
 
-keymap("v", "J", ":m '>+1<CR>gv=gv")
-keymap("v", "K", ":m '<-2<CR>gv=gv")
+keymap("v", "J", "<cmd>m '>+1<CR>gv=gv")
+keymap("v", "K", "<cmd>m '<-2<CR>gv=gv")
 
 keymap("i", "<C-n>", "<C-o>", { remap = true })
 
@@ -24,10 +24,10 @@ keymap("n", "<C-u>", "<C-u>zz")
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 
-keymap("n", "<leader>w", ":w<CR>")
-keymap("n", "<leader>W", ":wall<CR>")
-keymap("n", "<leader>q", ":q<CR>")
-keymap("n", "<leader>Q", ":q!<CR>")
+keymap("n", "<leader>w", "<cmd>w<CR>")
+keymap("n", "<leader>W", "<cmd>wall<CR>")
+keymap("n", "<leader>q", "<cmd>q<CR>")
+keymap("n", "<leader>Q", "<cmd>q!<CR>")
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = { "*.lua"},
@@ -42,11 +42,11 @@ keymap("n", "<M-l>", "<C-w>l")
 
 --buffer utils
 
-keymap("n", "<leader>bq", ":bd<CR>")
-keymap("n", "<leader>bQ", ":bd!<CR>")
+keymap("n", "<leader>bq", "<cmd>bd<CR>")
+keymap("n", "<leader>bQ", "<cmd>bd!<CR>")
 
-keymap("n", "<leader>bn", ":bn<CR>")
-keymap("n", "<leader>bp", ":bp<CR>")
+keymap("n", "<leader>bn", "<cmd>bn<CR>")
+keymap("n", "<leader>bp", "<cmd>bp<CR>")
 
 keymap({ "n", "v" }, "<leader>y", [["+y]])
 keymap("n", "<leader>Y", [["+Y]])
