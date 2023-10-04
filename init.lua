@@ -17,9 +17,6 @@ require('Andreas')
 
 require('lazy').setup({
   {
-    'nvim-lua/plenary.nvim',
-  },
-  {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
     dependencies = {
@@ -33,7 +30,6 @@ require('lazy').setup({
   },
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-treesitter/playground' },
-  { 'theprimeagen/harpoon' },
   { 'tpope/vim-fugitive' },
   { 'sindrets/diffview.nvim' },
   { 'tpope/vim-surround' },
@@ -249,35 +245,6 @@ require('lazy').setup({
     }
   },
   {
-    'abecodes/tabout.nvim',
-    config = function()
-      require('tabout').setup {
-        tabkey = '<Tab>',             -- key to trigger tabout, set to an empty string to disable
-        backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
-        act_as_tab = true,            -- shift content if tab out is not possible
-        act_as_shift_tab = false,     -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-        default_tab = '<C-t>',        -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
-        default_shift_tab = '<C-d>',  -- reverse shift default action,
-        enable_backwards = true,      -- well ...
-        completion = true,            -- if the tabkey is used in a completion pum
-        tabouts = {
-          { open = "'", close = "'" },
-          { open = '"', close = '"' },
-          { open = '`', close = '`' },
-          { open = '(', close = ')' },
-          { open = '[', close = ']' },
-          { open = '{', close = '}' }
-        },
-        ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-        exclude = {} -- tabout will ignore these filetypes
-      }
-    end,
-    dependencies = {
-      'nvim-treesitter',
-      'nvim-cmp',
-    }
-  },
-  {
     "folke/twilight.nvim",
     opts = {}
   },
@@ -290,5 +257,13 @@ require('lazy').setup({
     end,
   },
   { 'chentoast/marks.nvim' },
+  { 'simrat39/rust-tools.nvim' },
+  {
+    'saecki/crates.nvim',
+    tag = 'v0.3.0',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('crates').setup()
+    end,
+  },
 })
--- tabout might be unneccesary

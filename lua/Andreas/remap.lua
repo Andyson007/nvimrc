@@ -11,10 +11,12 @@ keymap("n", "<leader>pv", vim.cmd.Ex)
 
 keymap({ "i", "v" }, "uh", "<Esc>")
 
-vim.cmd[[map H ^]]
+vim.cmd [[map H ^]]
 
 keymap("v", "J", ":m '>+1<CR>gv=gv")
 keymap("v", "K", ":m '<-2<CR>gv=gv")
+
+keymap("i", "<C-n>", "<C-o>", { remap = true })
 
 keymap("n", "J", "mzJ`z")
 keymap("n", "<C-d>", "<C-d>zz")
@@ -26,8 +28,13 @@ keymap("n", "<leader>w", ":w<CR>")
 keymap("n", "<leader>W", ":wall<CR>")
 keymap("n", "<leader>q", ":q<CR>")
 keymap("n", "<leader>Q", ":q!<CR>")
-keymap("n", "<leader>r", ":so<CR>")
 
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { "*.lua"},
+  callback = function ()
+    vim.keymap.set("n", "<leader>r", "<cmd>so<cr>")
+  end
+})
 keymap("n", "<M-h>", "<C-w>h")
 keymap("n", "<M-j>", "<C-w>j")
 keymap("n", "<M-k>", "<C-w>k")
@@ -87,3 +94,8 @@ keymap("n", "<leader>ms", "<cmd>CellularAutomaton scramble<CR>");
 -- Self descriptive
 keymap("n", "<leader>l", "<cmd>Lazy<CR>")
 keymap("n", "<leader>m", "<cmd>Mason<CR>")
+
+
+
+--vim.keymap.set('n', '<leader>ct', crates.toggle)
+--vim.keymap.set('n', '<leader>cr', crates.reload)

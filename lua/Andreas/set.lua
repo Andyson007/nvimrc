@@ -36,6 +36,8 @@ opt.colorcolumn = "80"
 
 opt.lazyredraw = true
 
+vim.cmd[[ let g:rust_recommended_style = v:false ]]
+
 vim.cmd [[
 		let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
 		let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';'
