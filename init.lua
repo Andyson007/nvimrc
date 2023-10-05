@@ -275,11 +275,19 @@ require('lazy').setup({
   {
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = { hint_prefix = "" },
     config = function(_, opts) require 'lsp_signature'.setup(opts) end
   },
   {
     'nvim-lualine/lualine.nvim',
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   },
+  -- {
+  --   'altermo/ultimate-autopair.nvim',
+  --   event = { 'InsertEnter', 'CmdlineEnter' },
+  --   branch = 'v0.6', --recomended as each new version will have breaking changes
+  --   opts = {
+  --     --Config goes here
+  --   },
+  -- },
 })
