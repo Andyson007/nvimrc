@@ -69,10 +69,6 @@ keymap("n", "<S-F5>", "<cmd>CompilerOpen<CR>")
 keymap("n", "<F5>", "<cmd>CompilerRedo<CR>")
 keymap("n", "<F6>", "<cmd>!node .<CR>")
 
-keymap("n", "<leader>d<leader>", "<cmd>DiffviewOpen<CR>")
-keymap("n", "<leader>dq", "<cmd>DiffviewClose<CR>")
-keymap("n", "<leader>dc", "<cmd>DiffviewFileHistory<CR>")
-
 --quickfix
 keymap("n", "<leader>cn", "<cmd>silent cnext<CR>")
 keymap("n", "<leader>cp", "<cmd>silent cprevious<CR>")
