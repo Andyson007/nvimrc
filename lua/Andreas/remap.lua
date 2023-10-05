@@ -35,10 +35,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     vim.keymap.set("n", "<leader>r", "<cmd>so<cr>")
   end
 })
-keymap("n", "<M-h>", "<C-w>h")
-keymap("n", "<M-j>", "<C-w>j")
-keymap("n", "<M-k>", "<C-w>k")
-keymap("n", "<M-l>", "<C-w>l")
+keymap("n", "<C-h>", "<C-w>h")
+keymap("n", "<C-j>", "<C-w>j")
+keymap("n", "<C-k>", "<C-w>k")
+keymap("n", "<C-l>", "<C-w>l")
 
 --buffer utils
 
@@ -60,8 +60,8 @@ keymap({ "n", "v" }, "<leader>d", [["_d]])
 keymap("n", "Q", "<nop>")
 keymap("n", "<leader>f", vim.lsp.buf.format)
 
-keymap("n", "<C-k>", "<cmd>cnext<CR>zz")
-keymap("n", "<C-j>", "<cmd>cprev<CR>zz")
+keymap("n", "<leader>cn", "<cmd>cnext<CR>zz")
+keymap("n", "<leader>cp", "<cmd>cprev<CR>zz")
 keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
 keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
 
