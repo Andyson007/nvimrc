@@ -118,7 +118,6 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter'
     },
   },
-  { 'voldikss/vim-floaterm' },
   { 'nvim-tree/nvim-web-devicons' },
   {
     'folke/flash.nvim',

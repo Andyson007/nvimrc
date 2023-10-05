@@ -4,9 +4,10 @@ require 'toggleterm'.setup {
 
 local Terminal = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({
+  hidden=true,
+  count=5,
   cmd = "lazygit",
   dir = "git_dir",
-  count=1,
   direction = "float",
   -- function to run on opening the terminal
   on_open = function(term)
