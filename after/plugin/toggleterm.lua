@@ -4,15 +4,15 @@ require 'toggleterm'.setup {
 
 local Terminal = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({
-  hidden=true,
-  count=5,
+  hidden = true,
+  count = 5,
   cmd = "lazygit",
   dir = "git_dir",
   direction = "float",
   -- function to run on opening the terminal
   on_open = function(term)
     vim.cmd("startinsert!")
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
   end,
 })
 
@@ -38,22 +38,31 @@ end
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
-vim.keymap.set({ "n", "t" }, "<M-t>", "<cmd>1ToggleTerm<CR>")
+local togglemap = "<M-t>"
+vim.keymap.set({ "n", "t" }, togglemap, "<cmd>ToggleTerm<CR>")
 
--- vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
---   pattern = { "*.rs" },
---   callback = function()
---     vim.keymap.set("n", "<leader>r", "<cmd>FloatermSend cargo run<CR><cmd>FloatermToggle<CR>")
---   end
--- })
---
--- vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
---   pattern = { "*.js" },
---   callback = function()
---     vim.keymap.set("n", "<leader>r", "<cmd>FloatermSend node %<CR><cmd>FloatermToggle<CR>")
---   end
--- })
---
--- vim.cmd[[FloatermNew --wintype=split --height=0.3 --name=init]]
--- vim.cmd[[FloatermToggle init]]
--- vim.cmd[[stopinsert]]
+Compileopts = {
+  ["rs"] = function(_) return "cargo run" end,
+  ["js"] = function(file) return string.format("node %s", file) end,
+  ["cpp"] = function(file) return string.format("g++ %s;./a", file) end,
+}
+
+function _Compile_toggle(file)
+  local filetype = file:match(".*%.([^%.]*)")
+  if (filetype == "lua") then
+    return;
+  else
+    Terminal:new({
+      close_on_exit = false,
+      count = 6,
+      cmd = Compileopts[filetype](file),
+      direction = "float",
+      on_open = function(term)
+        vim.api.nvim_buf_set_keymap(term.bufnr, "t", togglemap, "<cmd>q!<CR>", { noremap = true, silent = true })
+      end,
+    }):toggle()
+  end
+end
+
+vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua _Compile_toggle(vim.fn.expand('%'))<CR>",
+  { noremap = true, silent = true })

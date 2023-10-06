@@ -291,4 +291,5 @@ require('lazy').setup({
   -- },
 
   { 'akinsho/toggleterm.nvim', version = "*", config = true },
+  { "folke/neodev.nvim",       opts = {} },
 })
