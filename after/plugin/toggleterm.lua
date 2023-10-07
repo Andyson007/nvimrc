@@ -45,23 +45,25 @@ Compileopts = {
   ["rs"] = function(_) return "cargo run" end,
   ["js"] = function(file) return string.format("node %s", file) end,
   ["cpp"] = function(file) return string.format("g++ %s;./a", file) end,
+  ["html"] = function(_) return "reload -b" end,
+  ["css"] = function(_) return "reload -b" end,
 }
 
 function _Compile_toggle(file)
   local filetype = file:match(".*%.([^%.]*)")
   if (filetype == "lua") then
+    vim.cmd[[so]]
     return;
-  else
-    Terminal:new({
-      close_on_exit = false,
-      count = 6,
-      cmd = Compileopts[filetype](file),
-      direction = "float",
-      on_open = function(term)
-        vim.api.nvim_buf_set_keymap(term.bufnr, "t", togglemap, "<cmd>q!<CR>", { noremap = true, silent = true })
-      end,
-    }):toggle()
   end
+  Terminal:new({
+    close_on_exit = false,
+    count = 6,
+    cmd = Compileopts[filetype](file),
+    direction = "float",
+    on_open = function(term)
+      vim.api.nvim_buf_set_keymap(term.bufnr, "t", togglemap, "<cmd>q!<CR>", { noremap = true, silent = true })
+    end,
+  }):toggle()
 end
 
 vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua _Compile_toggle(vim.fn.expand('%'))<CR>",

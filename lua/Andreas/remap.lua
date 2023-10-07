@@ -29,12 +29,6 @@ keymap("n", "<leader>W", "<cmd>wall<CR>")
 keymap("n", "<leader>q", "<cmd>q<CR>")
 keymap("n", "<leader>Q", "<cmd>q!<CR>")
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = { "*.lua"},
-  callback = function ()
-    vim.keymap.set("n", "<leader>r", "<cmd>so<cr>")
-  end
-})
 keymap("n", "<C-h>", "<C-w>h")
 keymap("n", "<C-j>", "<C-w>j")
 keymap("n", "<C-k>", "<C-w>k")

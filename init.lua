@@ -40,19 +40,20 @@ require('lazy').setup({
         border = "none",
       },
     },
-  }, {
-  'luckasRanarison/nvim-devdocs',
-  event = "VeryLazy",
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
-    'nvim-treesitter/nvim-treesitter',
   },
-  opts = {
-    previewer_cmd = 'glow',
-    cmd_args = { '-s', 'dark', '-w', '80' }
-  }
-},
+  {
+    'luckasRanarison/nvim-devdocs',
+    event = "VeryLazy",
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    opts = {
+      previewer_cmd = 'glow',
+      cmd_args = { '-s', 'dark', '-w', '80' }
+    }
+  },
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
@@ -289,7 +290,6 @@ require('lazy').setup({
   --     --Config goes here
   --   },
   -- },
-
   { 'akinsho/toggleterm.nvim', version = "*", config = true },
   { "folke/neodev.nvim",       opts = {} },
 })
