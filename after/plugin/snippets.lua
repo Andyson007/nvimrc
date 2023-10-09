@@ -178,11 +178,12 @@ ls.add_snippets("lua", {
     }
   ))
 })
+
 ls.add_snippets("cpp", {
   s("aoc", fmt(
     [[
 #include <iostream>
-#include <fstream>
+{}
 
 int main (int argc, char *argv[]) {{
   std::ifstream fin(argv[1]);
@@ -190,7 +191,8 @@ int main (int argc, char *argv[]) {{
   return 0;
 }}
   ]],{
-    i(1)
+    c(1, {t("#include <fstream>"), t("")}),
+    i(2)
   }
   ))
 })

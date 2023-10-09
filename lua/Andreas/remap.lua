@@ -12,6 +12,7 @@ keymap("n", "<leader>pv", vim.cmd.Ex)
 keymap({ "i", "v" }, "uh", "<Esc>")
 
 vim.cmd [[map H ^]]
+vim.cmd [[map L $]]
 
 keymap("v", "J", "<cmd>m '>+1<CR>gv=gv")
 keymap("v", "K", "<cmd>m '<-2<CR>gv=gv")
@@ -81,11 +82,7 @@ end)
 keymap("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 keymap("n", "<leader>ml", "<cmd>CellularAutomaton game_of_life<CR>");
 keymap("n", "<leader>ms", "<cmd>CellularAutomaton scramble<CR>");
+
 -- Self descriptive
 keymap("n", "<leader>l", "<cmd>Lazy<CR>")
 keymap("n", "<leader>m", "<cmd>Mason<CR>")
-
-
-
---vim.keymap.set('n', '<leader>ct', crates.toggle)
---vim.keymap.set('n', '<leader>cr', crates.reload)
