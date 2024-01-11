@@ -20,6 +20,7 @@ require('lazy').setup({
     'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
     dependencies = {
+      'nvim-telescope/telescope-frecency.nvim',
       'nvim-lua/plenary.nvim',
       {
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -30,7 +31,6 @@ require('lazy').setup({
   },
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-treesitter/playground' },
-  { 'tpope/vim-fugitive' },
   { 'sindrets/diffview.nvim' },
   { 'tpope/vim-surround' },
   {
@@ -47,7 +47,6 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
-      'nvim-treesitter/nvim-treesitter',
     },
     opts = {
       previewer_cmd = 'glow',
@@ -115,9 +114,6 @@ require('lazy').setup({
   { 'xiyaowong/transparent.nvim' },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter'
-    },
   },
   { 'nvim-tree/nvim-web-devicons' },
   {
@@ -153,11 +149,6 @@ require('lazy').setup({
       require('telepath').use_default_mappings()
     end
   },
-  {
-    "NStefan002/speedtyper.nvim",
-    cmd = "Speedtyper",
-    opts = {}
-  },
   { 'mbbill/undotree' },
   { 'harrisoncramer/jump-tag' },
   {
@@ -173,13 +164,13 @@ require('lazy').setup({
     'AndrewRadev/switch.vim',
     cmd = "Switch"
   },
-  {
-    'monaqa/dial.nvim',
-    cmd = {
-      "DialDecrement",
-      "DialIncrement",
-    }
-  },
+  -- {
+  --   'monaqa/dial.nvim',
+  --   cmd = {
+  --     "DialDecrement",
+  --     "DialIncrement",
+  --   }
+  -- },
   { "SmiteshP/nvim-navic" },
   {
     "SmiteshP/nvim-navbuddy",
@@ -199,6 +190,9 @@ require('lazy').setup({
           enable = false
         },
         indent = {
+          enable = false
+        },
+        hl_chunk = {
           enable = false
         },
         line_num = {
@@ -266,7 +260,7 @@ require('lazy').setup({
   { 'simrat39/rust-tools.nvim' },
   {
     'saecki/crates.nvim',
-    tag = 'v0.3.0',
+    event = { "BufRead Cargo.toml" },
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('crates').setup()
@@ -290,6 +284,8 @@ require('lazy').setup({
   --     --Config goes here
   --   },
   -- },
-  { 'akinsho/toggleterm.nvim', version = "*", config = true },
-  { "folke/neodev.nvim",       opts = {} },
+  { 'akinsho/toggleterm.nvim', version = "*", config = true, cmd = { "TermExec", "ToggleTerm" } },
+  { 'folke/neodev.nvim',       opts = {} },
+  { 'nvim-lua/popup.nvim' },
+  { 'junegunn/vim-easy-align' },
 })

@@ -20,7 +20,7 @@ function _lazygit_toggle()
   lazygit:toggle()
 end
 
-lazygit:spawn()
+-- lazygit:spawn()
 
 vim.api.nvim_set_keymap("n", "<M-l>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
@@ -43,16 +43,20 @@ vim.keymap.set({ "n", "t" }, togglemap, "<cmd>ToggleTerm<CR>")
 
 Compileopts = {
   ["rs"] = function(_) return "cargo run" end,
+  ["py"] = function(file) return string.format("python %s", file) end,
   ["js"] = function(file) return string.format("node %s", file) end,
   ["cpp"] = function(file) return string.format("g++ %s;./a", file) end,
-  ["html"] = function(_) return "reload -b" end,
-  ["css"] = function(_) return "reload -b" end,
+  ["html"] = function(_) return "reload" end,
+  ["css"] = function(_) return "reload" end,
 }
 
 function _Compile_toggle(file)
   local filetype = file:match(".*%.([^%.]*)")
   if (filetype == "lua") then
-    vim.cmd[[so]]
+    vim.cmd [[so]]
+    return;
+  elseif (filetype == "txt") then
+    vim.cmd [[e]]
     return;
   end
   Terminal:new({
@@ -60,9 +64,9 @@ function _Compile_toggle(file)
     count = 6,
     cmd = Compileopts[filetype](file),
     direction = "float",
-    on_open = function(term)
-      vim.api.nvim_buf_set_keymap(term.bufnr, "t", togglemap, "<cmd>q!<CR>", { noremap = true, silent = true })
-    end,
+    -- on_open = function(term)
+    --   vim.api.nvim_buf_set_keymap(term.bufnr, "t", togglemap, "<cmd>q!<CR>", { noremap = true, silent = true })
+    -- end,
   }):toggle()
 end
 

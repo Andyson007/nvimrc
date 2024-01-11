@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-opt.cmdheight = 0
+opt.cmdheight = 1
 
 opt.nu = true
 opt.relativenumber = true
@@ -26,7 +26,7 @@ opt.scrolloff = 4
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
-opt.updatetime = 50
+opt.updatetime = 100
 
 opt.colorcolumn = "80"
 
@@ -46,5 +46,3 @@ else
   opt.undodir = "/tmp/undo"
 end
 opt.shadafile = "NONE"
-
-vim.cmd [[ let g:netrw_list_hide = '^\.\+/$' ]]

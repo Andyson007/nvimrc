@@ -1,3 +1,6 @@
+require("nvim-treesitter.install").compilers = { "clang" }
+require 'nvim-treesitter.install'.prefer_git = false
+
 require 'nvim-treesitter.configs'.setup {
   incremental_selection = {
     enable = true,
@@ -180,6 +183,7 @@ local function getattributesQuery(query)
   local syntax_tree = language_tree:parse();
   local root = syntax_tree[1]:root()
   local ret = {}
+
   for _, captures, metadata in query:iter_matches(root, bufnr) do
     local temp = {}
     table.insert(temp, q.get_node_text(captures[1], bufnr))
@@ -188,6 +192,7 @@ local function getattributesQuery(query)
   end
   return ret
 end
+
 local function getattributes(lang, query)
   return getattributesQuery(vim.treesitter.query.parse(lang, query))
 end

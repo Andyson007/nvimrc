@@ -10,13 +10,9 @@ local keymap = vim.keymap.set
 keymap("n", "<leader>pv", vim.cmd.Ex)
 
 keymap({ "i", "v" }, "uh", "<Esc>")
-keymap({ "i", "v" }, "um", "<C-O>")
 
 vim.cmd [[map H ^]]
 vim.cmd [[map L $]]
-
-keymap("v", "J", "<cmd>m '>+1<CR>gv=gv")
-keymap("v", "K", "<cmd>m '<-2<CR>gv=gv")
 
 keymap("i", "<C-n>", "<C-o>", { remap = true })
 
@@ -26,8 +22,12 @@ keymap("n", "<C-u>", "<C-u>zz")
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 
+keymap("n", "dc", "cc<Esc>")
+
+keymap("n", "<leader>;", "A;<Esc>")
+
 keymap("n", "<leader>w", "<cmd>w<CR>")
-keymap("n", "<leader>W", "<cmd>wall<CR>")
+keymap("n", "<leader>W", "<cmd>w!<CR>")
 keymap("n", "<leader>q", "<cmd>q<CR>")
 keymap("n", "<leader>Q", "<cmd>q!<CR>")
 
@@ -61,10 +61,6 @@ keymap("n", "<leader>cp", "<cmd>cprev<CR>zz")
 keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
 keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-keymap("n", "<S-F5>", "<cmd>CompilerOpen<CR>")
-keymap("n", "<F5>", "<cmd>CompilerRedo<CR>")
-keymap("n", "<F6>", "<cmd>!node .<CR>")
-
 --quickfix
 keymap("n", "<leader>cn", "<cmd>silent cnext<CR>")
 keymap("n", "<leader>cp", "<cmd>silent cprevious<CR>")
@@ -89,7 +85,6 @@ keymap("n", "<leader>l", "<cmd>Lazy<CR>")
 keymap("n", "<leader>m", "<cmd>Mason<CR>")
 
 keymap("n", "<leader>tn", "<cmd>tabnext<CR>")
-keymap("n", "<leader>tt", "<cmd>tabnew<CR>")
 keymap("n", "<leader>tp", "<cmd>tabprevious<CR>")
 
 -- surround
@@ -98,29 +93,27 @@ keymap("n", "<leader>tp", "<cmd>tabprevious<CR>")
 -- one %s because the it will be called with string.format
 
 local function escape(s)
-    return (s:gsub('[%-%.%+%[%]%(%)%$%^%%%?%*]','%%%1'))
+  return (s:gsub('[%-%.%+%[%]%(%)%$%^%%%?%*]', '%%%1'))
 end
 
 Surrounds = {
   ["js"] = "console.log(%s);",
-  ["cpp"] = "std::cout<<%s;",
+  ["cpp"] = "std::cout << %s;",
   ["lua"] = "print(vim.inspect(%s))",
 }
 
 function SurroundDbg(file)
   local filetype = file:match(".*%.([^%.]*)")
   local line = string.trim(vim.api.nvim_get_current_line())
-  if line:sub(-1) == ";" then
-    line = line:sub(1, -2);
-  end
 
   local surround = escape(Surrounds[filetype])
   local regex = string.gsub(surround, "%%%%s", "(.*)")
   local match = string.match(line, regex)
 
   local content = match or string.format(Surrounds[filetype], string.trim(line))
-  print(vim.inspect(vim.api.nvim_feedkeys("cc"..content,"n", false)))
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>",true,true,true),"n", false)
+  print(vim.inspect(regex))
+  vim.fn.setline(vim.fn.getpos(".")[2], content)
+  vim.api.nvim_feedkeys("==", "n", true)
 end
 
 keymap("n", "<leader>db", "<cmd>lua SurroundDbg(vim.fn.expand('%'))<CR>")

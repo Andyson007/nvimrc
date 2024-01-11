@@ -196,3 +196,12 @@ int main (int argc, char *argv[]) {{
   }
   ))
 })
+
+ls.add_snippets("js", { -- Doesn't load in js idk why
+  s("id", fmt(
+    [[const {} = document.getElementById("{}");]],{
+      i(1, "id"),
+      rep(1)
+  }
+  ))
+})
