@@ -286,6 +286,6 @@ require('lazy').setup({
   -- },
   { 'akinsho/toggleterm.nvim', version = "*", config = true, cmd = { "TermExec", "ToggleTerm" } },
   { 'folke/neodev.nvim',       opts = {} },
-  { 'nvim-lua/popup.nvim' },
+  {'nvim-lua/popup.nvim' },
   { 'junegunn/vim-easy-align' },
 })
