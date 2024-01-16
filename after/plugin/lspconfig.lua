@@ -51,6 +51,10 @@ lsp.emmet_language_server.setup {
   capabilities = capabilities
 }
 
+lsp.cssls.setup {
+  capabilities = capabilities,
+}
+
 lsp.tailwindcss.setup {
   capabilities = capabilities,
   settings = {
