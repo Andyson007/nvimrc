@@ -46,3 +46,5 @@ else
   opt.undodir = "/tmp/undo"
 end
 opt.shadafile = "NONE"
+
+vim.cmd [[ let g:netrw_list_hide = '^\.\.\?/$' ]]
