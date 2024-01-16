@@ -1,4 +1,5 @@
 require('neodev').setup({})
+require('crates').setup()
 require("mason").setup()
 
 require("mason-lspconfig").setup({
@@ -30,50 +31,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 
 local lsp = require 'lspconfig'
-
-lsp.rust_analyzer.setup {
-  capabilities = capabilities,
-}
-
-lsp.lua_ls.setup {
-  capabilities = capabilities
-}
-
-lsp.biome.setup {
-  capabilities = capabilities
-}
-
-lsp.html.setup {
-  capabilities = capabilities
-}
-
-lsp.emmet_language_server.setup {
-  capabilities = capabilities
-}
-
-lsp.cssls.setup {
-  capabilities = capabilities,
-}
-
-lsp.tailwindcss.setup {
-  capabilities = capabilities,
-  settings = {
-    tailwindCSS = {
-      classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
-      lint = {
-        cssConflict = "warning",
-        invalidApply = "error",
-        invalidConfigPath = "error",
-        invalidScreen = "error",
-        invalidTailwindDirective = "error",
-        invalidVariant = "error",
-        recommendedVariantOrder = "warning"
-      },
-      validate = true
-    }
-  }
-}
-
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 local cmp = require 'cmp'
@@ -134,3 +91,13 @@ vim.keymap.set('n', '<leader>cu', crates.update_crate, opts)
 vim.keymap.set('v', '<leader>cu', crates.update_crates, opts)
 vim.keymap.set('n', '<leader>cU', crates.upgrade_crate, opts)
 vim.keymap.set('v', '<leader>cU', crates.upgrade_crates, opts)
+
+for key, value in pairs({ lsp.tsserver, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.lua_ls }) do
+  value.setup {
+    capabilities = capabilities,
+  }
+end
+
+lsp.rust_analyzer.setup {
+  capabilities = capabilities,
+}
