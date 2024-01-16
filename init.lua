@@ -54,13 +54,13 @@ require('lazy').setup({
     }
   },
   {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
-    dependencies = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' },             -- Required
-      { 'williamboman/mason.nvim' },           -- Optional
-      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+    'neovim/nvim-lspconfig',
+    dependencies =
+    {
+      'simrat39/rust-tools.nvim',
+      'rust-lang/rust-analyzer',
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
 
       -- Autocompletion
       { 'hrsh7th/cmp-nvim-lsp' },
@@ -82,7 +82,7 @@ require('lazy').setup({
           }
         },
       }
-    }
+    },
   },
   {
     'windwp/nvim-ts-autotag',
@@ -112,9 +112,7 @@ require('lazy').setup({
     event = 'VeryLazy'
   },
   { 'xiyaowong/transparent.nvim' },
-  {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  },
+  { 'nvim-treesitter/nvim-treesitter-textobjects', },
   { 'nvim-tree/nvim-web-devicons' },
   {
     'folke/flash.nvim',
@@ -164,13 +162,6 @@ require('lazy').setup({
     'AndrewRadev/switch.vim',
     cmd = "Switch"
   },
-  -- {
-  --   'monaqa/dial.nvim',
-  --   cmd = {
-  --     "DialDecrement",
-  --     "DialIncrement",
-  --   }
-  -- },
   { "SmiteshP/nvim-navic" },
   {
     "SmiteshP/nvim-navbuddy",
@@ -206,42 +197,21 @@ require('lazy').setup({
     cmd = "ZenMode",
     opts = {
       window = {
-        backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-        -- height and width can be:
-        -- * an absolute number of cells when > 1
-        -- * a percentage of the width / height of the editor when <= 1
-        -- * a function that returns the width or the height
-        width = 1,  -- width of the Zen window
-        height = 1, -- height of the Zen window
-        -- by default, no options are changed for the Zen window
-        -- uncomment any of the options below, or add other vim.wo options you want to apply
+        backdrop = 1,
+        width = 1,
+        height = 1,
         options = {
-          -- signcolumn = "no", -- disable signcolumn
-          -- number = false, -- disable number column
-          -- relativenumber = false, -- disable relative numbers
-          -- cursorline = false, -- disable cursorline
-          -- cursorcolumn = false, -- disable cursor column
-          -- foldcolumn = "0", -- disable fold column
-          -- list = false, -- disable whitespace characters
         },
       },
       plugins = {
-        -- disable some global vim options (vim.o...)
-        -- comment the lines to not apply the options
         options = {
           enabled = true,
-          ruler = false,                -- disables the ruler text in the cmd line area
-          showcmd = false,              -- disables the command in the last line of the screen
+          ruler = false,
+          showcmd = false,
         },
-        twilight = { enabled = true },  -- enable to start Twilight when zen mode opens
-        gitsigns = { enabled = false }, -- disables git signs
+        twilight = { enabled = true },
+        gitsigns = { enabled = false },
       },
-      -- callback where you can add custom code when the Zen window opens
-      -- on_open = function(win)
-      -- end,
-      -- callback where you can add custom code when the Zen window closes
-      -- on_close = function()
-      -- end,
     }
   },
   {
@@ -257,7 +227,6 @@ require('lazy').setup({
     end,
   },
   { 'chentoast/marks.nvim' },
-  { 'simrat39/rust-tools.nvim' },
   {
     'saecki/crates.nvim',
     event = { "BufRead Cargo.toml" },
@@ -286,6 +255,6 @@ require('lazy').setup({
   -- },
   { 'akinsho/toggleterm.nvim', version = "*", config = true, cmd = { "TermExec", "ToggleTerm" } },
   { 'folke/neodev.nvim',       opts = {} },
-  {'nvim-lua/popup.nvim' },
+  { 'nvim-lua/popup.nvim' },
   { 'junegunn/vim-easy-align' },
 })

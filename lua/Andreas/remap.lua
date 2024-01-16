@@ -22,6 +22,8 @@ keymap("n", "<C-u>", "<C-u>zz")
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 
+keymap("n", "<leader>:", ":lua ")
+
 keymap("n", "dc", "cc<Esc>")
 
 keymap("n", "<leader>;", "A;<Esc>")
@@ -54,7 +56,6 @@ keymap("n", "<leader>P", [["+P]])
 keymap({ "n", "v" }, "<leader>d", [["_d]])
 
 keymap("n", "Q", "<nop>")
-keymap("n", "<leader>f", vim.lsp.buf.format)
 
 keymap("n", "<leader>cn", "<cmd>cnext<CR>zz")
 keymap("n", "<leader>cp", "<cmd>cprev<CR>zz")
