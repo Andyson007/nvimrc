@@ -58,7 +58,6 @@ require('lazy').setup({
     dependencies =
     {
       'simrat39/rust-tools.nvim',
-      'rust-lang/rust-analyzer',
 
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',

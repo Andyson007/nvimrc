@@ -92,12 +92,18 @@ vim.keymap.set('v', '<leader>cu', crates.update_crates, opts)
 vim.keymap.set('n', '<leader>cU', crates.upgrade_crate, opts)
 vim.keymap.set('v', '<leader>cU', crates.upgrade_crates, opts)
 
-for key, value in pairs({ lsp.tsserver, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.lua_ls }) do
+for key, value in pairs({ lsp.tsserver, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.lua_ls, lsp.taplo, lsp.sqlls }) do
   value.setup {
     capabilities = capabilities,
   }
 end
 
-lsp.rust_analyzer.setup {
-  capabilities = capabilities,
+require 'lspconfig'.rust_analyzer.setup {
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false,
+      }
+    }
+  }
 }
