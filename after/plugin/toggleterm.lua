@@ -43,9 +43,10 @@ vim.keymap.set({ "n", "t" }, togglemap, "<cmd>ToggleTerm<CR>")
 
 Compileopts = {
   ["rs"] = function(_) return "cargo run" end,
-  ["py"] = function(file) return string.format("python %s", file) end,
+  ["py"] = function(file) return string.format("python3 %s", file) end,
   ["js"] = function(file) return string.format("node %s", file) end,
   ["cpp"] = function(file) return string.format("g++ %s;./a", file) end,
+  ["tsx"] = function(file) return "npm run build" end,
   ["html"] = function(_) return "reload" end,
   ["css"] = function(_) return "reload" end,
 }

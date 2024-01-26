@@ -11,6 +11,8 @@ keymap("n", "<leader>pv", vim.cmd.Ex)
 
 keymap({ "i", "v" }, "uh", "<Esc>")
 
+vim.cmd [[cnoreabbrev t4 set tabstop=4 softtabstop=4 shiftwidth=4]]
+vim.cmd [[cnoreabbrev t2 set tabstop=2 softtabstop=2 shiftwidth=2]]
 vim.cmd [[map H ^]]
 vim.cmd [[map L $]]
 

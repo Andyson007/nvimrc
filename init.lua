@@ -218,8 +218,6 @@ require('lazy').setup({
     "folke/twilight.nvim",
     opts = {}
   },
-  { 'stefandtw/quickfix-reflector.vim' },
-  { 'kevinhwang91/nvim-bqf' },
   {
     'junegunn/fzf',
     run = function()
