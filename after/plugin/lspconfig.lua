@@ -92,7 +92,7 @@ vim.keymap.set('v', '<leader>cu', crates.update_crates, opts)
 vim.keymap.set('n', '<leader>cU', crates.upgrade_crate, opts)
 vim.keymap.set('v', '<leader>cU', crates.upgrade_crates, opts)
 
-for key, value in pairs({ lsp.tsserver, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.lua_ls, lsp.taplo, lsp.sqlls }) do
+for key, value in pairs({ lsp.tsserver, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.lua_ls, lsp.taplo, lsp.sqlls, lsp.jsonls }) do
   value.setup {
     capabilities = capabilities,
   }
