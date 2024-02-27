@@ -11,6 +11,10 @@ keymap("n", "<leader>pv", vim.cmd.Ex)
 
 keymap({ "i", "v" }, "uh", "<Esc>")
 
+vim.cmd [[cnoreabbrev t2 set tabstop=2 softtabstop=2 shiftwidth=2]]
+vim.cmd [[cnoreabbrev t4 set tabstop=4 softtabstop=4 shiftwidth=4]]
+vim.cmd [[cnoreabbrev t8 set tabstop=8 softtabstop=8 shiftwidth=8]]
+
 vim.cmd [[map H ^]]
 vim.cmd [[map L $]]
 
@@ -21,6 +25,8 @@ keymap("n", "<C-d>", "<C-d>zz")
 keymap("n", "<C-u>", "<C-u>zz")
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
+
+keymap("n", "<leader>:", ":lua ")
 
 keymap("n", "dc", "cc<Esc>")
 
@@ -54,7 +60,6 @@ keymap("n", "<leader>P", [["+P]])
 keymap({ "n", "v" }, "<leader>d", [["_d]])
 
 keymap("n", "Q", "<nop>")
-keymap("n", "<leader>f", vim.lsp.buf.format)
 
 keymap("n", "<leader>cn", "<cmd>cnext<CR>zz")
 keymap("n", "<leader>cp", "<cmd>cprev<CR>zz")
