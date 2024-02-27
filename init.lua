@@ -25,7 +25,7 @@ require('lazy').setup({
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         build =
-        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+        'make'
       }
     }
   },
@@ -106,7 +106,12 @@ require('lazy').setup({
   },
   { 'lukas-reineke/indent-blankline.nvim', main = "ibl", opts = {} },
   { 'HiPhish/rainbow-delimiters.nvim' },
-  { 'Alexis12119/nightly.nvim' },
+  {
+    'Alexis12119/nightly.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
   {
     'eandrju/cellular-automaton.nvim',
     event = 'VeryLazy'
@@ -254,4 +259,13 @@ require('lazy').setup({
   { 'akinsho/toggleterm.nvim', version = "*", config = true, cmd = { "TermExec", "ToggleTerm" } },
   { 'folke/neodev.nvim',       opts = {} },
   { 'nvim-lua/popup.nvim' },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
 })

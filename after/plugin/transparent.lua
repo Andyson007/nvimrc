@@ -18,4 +18,4 @@ require("transparent").setup({ -- Optional, you don't have to run setup.
   exclude_groups = {}, -- table: groups you don't want to clear
 })
 
-vim.cmd[[set laststatus=3]]
+vim.cmd [[set laststatus=3]]
