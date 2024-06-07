@@ -92,13 +92,13 @@ vim.keymap.set('v', '<leader>cu', crates.update_crates, opts)
 vim.keymap.set('n', '<leader>cU', crates.upgrade_crate, opts)
 vim.keymap.set('v', '<leader>cU', crates.upgrade_crates, opts)
 
-for key, value in pairs({ lsp.tsserver, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.lua_ls, lsp.taplo, lsp.sqlls, lsp.jsonls, lsp.jedi_language_server}) do
+for key, value in pairs({ lsp.jsonls,lsp.sqlls, lsp.yamlls, lsp.tsserver, lsp.bashls, lsp.asm_lsp, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.lua_ls, lsp.taplo, lsp.sqlls, lsp.jsonls, lsp.jedi_language_server, lsp.wgsl_analyzer, lsp.grammarly}) do
   value.setup {
     capabilities = capabilities,
   }
 end
 
-require 'lspconfig'.rust_analyzer.setup {
+lsp.rust_analyzer.setup {
   settings = {
     ['rust-analyzer'] = {
       diagnostics = {
@@ -107,3 +107,12 @@ require 'lspconfig'.rust_analyzer.setup {
     }
   }
 }
+
+lsp.eslint.setup({
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+})
