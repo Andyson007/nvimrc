@@ -13,15 +13,9 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
+	{ "tpope/vim-sleuth" },
 	{ "numToStr/Comment.nvim", opts = {} },
-
-	-- Here is a more advanced example where we pass configuration
-	-- options to `gitsigns.nvim`. This is equivalent to the following Lua:
-	--    require('gitsigns').setup({ ... })
-	--
-	-- See `:help gitsigns` to understand what the configuration keys do
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
+	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
 			signs = {
@@ -47,7 +41,6 @@ require("lazy").setup({
 				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
 				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
 				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
 				["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
 				["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
 			})
@@ -56,15 +49,28 @@ require("lazy").setup({
 			}, { mode = "v" })
 		end,
 	},
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function(_, opts)
+			require("oil").setup(opts)
+			vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>")
+		end,
+	},
 
 	{ import = "plugins.telescope" },
-	{ import = "plugins.lsp-config" },
-	{ import = "plugins.nvim-cmp" },
+	{ import = "plugins.lsp.lsp-config" },
+	{ import = "plugins.lsp.nvim-cmp" },
+	{ import = "plugins.lsp.rust-tools" },
 	{ import = "plugins.nightly" },
 	{ import = "plugins.lualine" },
 	{ import = "plugins.conform" },
 	{ import = "plugins.dap" },
 	{ import = "plugins.treesitter" },
+	{ import = "plugins.trouble" },
+
 	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
@@ -83,6 +89,95 @@ require("lazy").setup({
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = true,
+	},
+	{
+		"saecki/crates.nvim",
+		tag = "stable",
+		config = function()
+			require("crates").setup()
+			local crates = require("crates")
+			vim.keymap.set("n", "<leader>ct", crates.toggle, { desc = "[C]rates [T]oggle virtual text" })
+			vim.keymap.set("n", "<leader>cr", crates.reload, { desc = "[C]rates [R]load" })
+
+			vim.keymap.set("n", "<leader>cv", crates.show_versions_popup, { desc = "[C]rates [V]ersions" })
+			vim.keymap.set("n", "<leader>cf", crates.show_features_popup, { desc = "[C]rates show [F]eatures" })
+			vim.keymap.set("n", "<leader>cd", crates.show_dependencies_popup, { desc = "[C]rates show [D]ependencies" })
+
+			vim.keymap.set(
+				{ "n", "v" },
+				"<leader>cu",
+				crates.update_crate,
+				{ desc = "[C]rates [u]pdate (includes major versions) 1.1 -> 1.9" }
+			)
+			vim.keymap.set(
+				{ "n", "v" },
+				"<leader>cU",
+				crates.upgrade_crate,
+				{ desc = "[C]rates [u]pgrade (ignores major versions) 1.1 -> 2.0" }
+			)
+		end,
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	},
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+	},
+	{
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("lint").linters_by_ft = {
+				markdown = { "vale" },
+			}
+			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+				callback = function()
+					require("lint").try_lint()
+				end,
+			})
+		end,
+	},
+	{
+		"norcalli/nvim-colorizer.lua",
+		opts = {
+			css = { rgb_fn = true }, -- Enable parsing rgb(...) functions in css.
+			html = { names = true }, -- Disable parsing "names" like Blue or Gray
+		},
+	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		---@type Flash.Config
+		opts = {},
+		keys = {
+			{
+				"S",
+				mode = { "n", "o" },
+				function()
+					require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter",
+			},
+			{
+				"R",
+				mode = { "o", "x" },
+				function()
+					require("flash").treesitter_search({
+						remote_op = {
+							restore = true,
+							motion = true,
+						},
+					})
+				end,
+				desc = "Treesitter Search",
+			},
+		},
 	},
 }, {})
 -- The line beneath this is called `modeline`. See `:help modeline`

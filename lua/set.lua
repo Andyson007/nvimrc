@@ -70,5 +70,4 @@ end
 opt.shadafile = "NONE"
 
 vim.cmd([[ let g:netrw_list_hide = '^\.\.\?/$' ]])
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#badbed" })
 vim.opt.conceallevel = 1

@@ -4,7 +4,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		{ -- If encountering errors, see telescope-fzf-native README for installation instructions
+		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
 
@@ -45,9 +45,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				fzf = {
 					fuzzy = true, -- false will only do exact matching
 					override_generic_sorter = true, -- override the generic sorter
-					override_file_sorter = true, -- override the file sorter
-					case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-					-- the default case_mode is "smart_case"
+					override_file_sorter = true,
+					case_mode = "smart_case",
 				},
 			},
 		})
@@ -56,9 +55,24 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>tt", builtin.treesitter, { desc = "Treesitter Symbols e.g. variables " })
 		vim.keymap.set("n", "<leader>pr", builtin.resume, { desc = "Resume previous search" })
 		vim.keymap.set("n", "<leader>he", builtin.help_tags, { desc = "[He]lp" })
-		vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, { desc = "[G]o to [i]mplementation under cursor. If multiple show in Telescope men" })
-		vim.keymap.set("n", "<leader>gr", builtin.lsp_references, { desc = "Show all references to this variable/function" })
-		vim.keymap.set("n", "<leader>gD", builtin.lsp_definitions, { desc = "Show all definitions of this variable/function" })
+		vim.keymap.set(
+			"n",
+			"<leader>gi",
+			builtin.lsp_implementations,
+			{ desc = "[G]o to [i]mplementation under cursor. If multiple show in Telescope men" }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>gr",
+			builtin.lsp_references,
+			{ desc = "Show all references to this variable/function" }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>gD",
+			builtin.lsp_definitions,
+			{ desc = "Show all definitions of this variable/function" }
+		)
 		vim.keymap.set("n", "<leader>gty", builtin.lsp_type_definitions, { desc = "[G]o to [ty]pe definitions" })
 		vim.keymap.set("n", "<leader>pd", builtin.lsp_document_symbols, { desc = "[P]roject [D]ocument symbols" })
 		vim.keymap.set("n", "<leader>dl", builtin.diagnostics, { desc = "[D]iagnostic [L]ist" })
@@ -72,12 +86,17 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "[P]roject [F]iles" })
 		vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "[G]it [B]ranches" })
 		vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "[G]it [C]ommits" })
-		vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "[G]it [S]tatus (Shows all buffers and their status)" })
+		vim.keymap.set(
+			"n",
+			"<leader>gs",
+			builtin.git_status,
+			{ desc = "[G]it [S]tatus (Shows all buffers and their status)" }
+		)
 		vim.keymap.set("n", "<leader>gt", builtin.git_stash, { desc = "[G]it s[T]ashe" })
 		vim.keymap.set("n", "<leader>pg", builtin.live_grep, { desc = "[P]roject [G]rep" })
 		vim.keymap.set("n", "<leader>ps", function()
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })
-		end, {desc = "[P]roject [S]earch"})
+		end, { desc = "[P]roject [S]earch" })
 
 		vim.keymap.set("n", "<leader><leader>pf", "<Cmd>Telescope frecency<cr>")
 

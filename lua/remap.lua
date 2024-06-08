@@ -11,7 +11,8 @@ vim.g.user_emmet_update_tag = "<C-Z>u"
 
 vim.g.user_emmet_next_key = "<C-n>"
 
-keymap("n", "<leader>pv", vim.cmd.Ex, { desc = "Open netrw" })
+-- Replaced with oil.nvim
+-- keymap("n", "<leader>pv", vim.cmd.Ex, { desc = "Open netrw" })
 
 keymap({ "i", "v" }, "uh", "<Esc>", { desc = "Exit insert/visual mode" })
 
@@ -45,16 +46,16 @@ keymap("n", "<C-l>", "<C-w>l")
 
 --buffer utils
 keymap("n", "<leader>bq", "<cmd>bd<CR>", { desc = "close this buffer" })
-keymap("n", "<leader>bQ", "<cmd>bd!<CR>")
+keymap("n", "<leader>bQ", "<cmd>bd!<CR>", { desc = "force close the buffer" })
 
 keymap("n", "<leader>bn", "<cmd>bn<CR>")
 keymap("n", "<leader>bp", "<cmd>bp<CR>")
 
-keymap({ "n", "v" }, "<leader>y", [["+y]])
-keymap("n", "<leader>Y", [["+Y]])
+keymap({ "n", "v" }, "<leader>y", [["+y]], { desc = "[Y]ank to system clipboard" })
+keymap({ "n", "v" }, "<leader>Y", [["+Y]], { desc = "[Y]ank to system clipboard" })
 
 keymap({ "n", "v" }, "<leader>p", [["+p]])
-keymap("n", "<leader>P", [["+P]])
+keymap({ "n", "v" }, "<leader>P", [["+P]])
 
 keymap({ "n", "v" }, "<leader>d", [["_d]])
 
