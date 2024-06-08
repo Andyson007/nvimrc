@@ -36,18 +36,50 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
+		pcall(require("telescope").load_extension, "frecency")
 
 		local builtin = require("telescope.builtin")
-		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-		vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
-		vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-		vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-		vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+
+		require("telescope").setup({
+			extensions = {
+				fzf = {
+					fuzzy = true, -- false will only do exact matching
+					override_generic_sorter = true, -- override the generic sorter
+					override_file_sorter = true, -- override the file sorter
+					case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+					-- the default case_mode is "smart_case"
+				},
+			},
+		})
+
+		vim.keymap.set("n", "<leader>bb", builtin.builtin, { desc = "View all avaiable Telescope command" })
+		vim.keymap.set("n", "<leader>tt", builtin.treesitter, { desc = "Treesitter Symbols e.g. variables " })
+		vim.keymap.set("n", "<leader>pr", builtin.resume, { desc = "Resume previous search" })
+		vim.keymap.set("n", "<leader>he", builtin.help_tags, { desc = "[He]lp" })
+		vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, { desc = "[G]o to [i]mplementation under cursor. If multiple show in Telescope men" })
+		vim.keymap.set("n", "<leader>gr", builtin.lsp_references, { desc = "Show all references to this variable/function" })
+		vim.keymap.set("n", "<leader>gD", builtin.lsp_definitions, { desc = "Show all definitions of this variable/function" })
+		vim.keymap.set("n", "<leader>gty", builtin.lsp_type_definitions, { desc = "[G]o to [ty]pe definitions" })
+		vim.keymap.set("n", "<leader>pd", builtin.lsp_document_symbols, { desc = "[P]roject [D]ocument symbols" })
+		vim.keymap.set("n", "<leader>dl", builtin.diagnostics, { desc = "[D]iagnostic [L]ist" })
+		vim.keymap.set("n", "<leader>p:", builtin.command_history, { desc = "Command history" })
+		vim.keymap.set("n", "<leader>p/", builtin.search_history, { desc = "Search history" })
+		vim.keymap.set("n", "<leader>pb", builtin.buffers, { desc = "[P]roject [B]uffers" })
+		vim.keymap.set("n", "<leader>po", builtin.oldfiles, { desc = "" })
+		vim.keymap.set("n", "<leader>vi", builtin.vim_options, { desc = "[VI]m options" })
+		vim.keymap.set("n", "<leader>gp", builtin.git_files, { desc = "All files in the current git repo" })
+		vim.keymap.set("n", "<leader>pp", builtin.jumplist, { desc = "jumplist" })
+		vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "[P]roject [F]iles" })
+		vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "[G]it [B]ranches" })
+		vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "[G]it [C]ommits" })
+		vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "[G]it [S]tatus (Shows all buffers and their status)" })
+		vim.keymap.set("n", "<leader>gt", builtin.git_stash, { desc = "[G]it s[T]ashe" })
+		vim.keymap.set("n", "<leader>pg", builtin.live_grep, { desc = "[P]roject [G]rep" })
+		vim.keymap.set("n", "<leader>ps", function()
+			builtin.grep_string({ search = vim.fn.input("Grep > ") })
+		end, {desc = "[P]roject [S]earch"})
+
+		vim.keymap.set("n", "<leader><leader>pf", "<Cmd>Telescope frecency<cr>")
 
 		vim.keymap.set("n", "<leader>/", function()
 			-- You can pass additional configuration to Telescope to change the theme, layout, etc.

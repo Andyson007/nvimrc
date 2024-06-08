@@ -3,6 +3,7 @@ vim.g.maplocalleader = " "
 
 require("set")
 require("remap")
+require("autocmds")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -56,13 +57,14 @@ require("lazy").setup({
 		end,
 	},
 
-
 	{ import = "plugins.telescope" },
 	{ import = "plugins.lsp-config" },
 	{ import = "plugins.nvim-cmp" },
 	{ import = "plugins.nightly" },
 	{ import = "plugins.lualine" },
 	{ import = "plugins.conform" },
+	{ import = "plugins.dap" },
+	{ import = "plugins.treesitter" },
 	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
@@ -73,11 +75,15 @@ require("lazy").setup({
 	{
 		"echasnovski/mini.nvim",
 		config = function()
+			-- Improves i/a movements as in w[i]p w[a]p
 			require("mini.ai").setup({ n_lines = 500 })
-			require("mini.surround").setup()
 		end,
 	},
-	{ import = "plugins.treesitter" },
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+	},
 }, {})
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
