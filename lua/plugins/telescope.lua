@@ -36,7 +36,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
-		pcall(require("telescope").load_extension, "frecency")
 
 		local builtin = require("telescope.builtin")
 
@@ -97,8 +96,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>ps", function()
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })
 		end, { desc = "[P]roject [S]earch" })
-
-		vim.keymap.set("n", "<leader><leader>pf", "<Cmd>Telescope frecency<cr>")
 
 		vim.keymap.set("n", "<leader>/", function()
 			-- You can pass additional configuration to Telescope to change the theme, layout, etc.

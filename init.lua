@@ -15,25 +15,19 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{ "tpope/vim-sleuth" },
 	{ "numToStr/Comment.nvim", opts = {} },
-	{
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "│" },
-				change = { text = "│" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-				untracked = { text = "┆" },
-			},
-		},
-	},
 
 	{
 		"folke/which-key.nvim",
 		event = "VimEnter", -- Sets the loading event to 'VimEnter'
 		config = function()
-			require("which-key").setup()
+			require("which-key").setup({
+				triggers_blacklist = {
+					-- list of mode / prefixes that should never be hooked by WhichKey
+					-- this is mostly relevant for keymaps that start with a native binding
+					i = { "i" },
+					v = { "i" },
+				},
+			})
 
 			-- Document existing key chains
 			require("which-key").register({
@@ -44,6 +38,7 @@ require("lazy").setup({
 				["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
 				["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
 			})
+
 			require("which-key").register({
 				["<leader>h"] = { "Git [H]unk" },
 			}, { mode = "v" })
@@ -60,6 +55,7 @@ require("lazy").setup({
 		end,
 	},
 
+	{ import = "plugins.gitsigns" },
 	{ import = "plugins.telescope" },
 	{ import = "plugins.lsp.lsp-config" },
 	{ import = "plugins.lsp.nvim-cmp" },
@@ -70,6 +66,7 @@ require("lazy").setup({
 	{ import = "plugins.dap" },
 	{ import = "plugins.treesitter" },
 	{ import = "plugins.trouble" },
+	{ import = "plugins.obsidian" },
 
 	{
 		"folke/todo-comments.nvim",
@@ -177,6 +174,49 @@ require("lazy").setup({
 				end,
 				desc = "Treesitter Search",
 			},
+		},
+	},
+	{
+		"rasulomaroff/telepath.nvim",
+		dependencies = "ggandor/leap.nvim",
+		-- there's no sence in using lazy loading since telepath won't load the main module
+		-- until you actually use mappings
+		lazy = false,
+		config = function()
+			require("telepath").use_default_mappings()
+		end,
+	},
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			require("leap").add_default_mappings()
+			vim.keymap.set("n", "s", function()
+				local current_window = vim.fn.win_getid()
+				require("leap").leap({ target_windows = { current_window } })
+			end)
+		end,
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		event = { "InsertEnter" },
+		opts = {},
+	},
+	{
+		"mattn/emmet-vim",
+		event = "InsertEnter",
+	},
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		opts = {},
+		config = function(_, opts)
+			require("lsp_signature").setup(opts)
+		end,
+		{
+			"SmiteshP/nvim-navic",
+			config = function()
+				vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
+			end,
 		},
 	},
 }, {})
