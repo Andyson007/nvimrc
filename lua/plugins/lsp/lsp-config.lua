@@ -28,6 +28,9 @@ return {
 				map("K", vim.lsp.buf.hover, "Hover Documentation")
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
+				map("dp", vim.diagnostic.goto_prev, "[d]iagnostic [p]revious")
+				map("dn", vim.diagnostic.goto_next, "[d]iagnostic [n]ext")
+
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				if client and client.server_capabilities.documentHighlightProvider then
 					local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })

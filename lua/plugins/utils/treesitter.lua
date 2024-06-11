@@ -63,8 +63,9 @@ return {
 						["ic"] = "@class.inner",
 						["ii"] = "@conditional.inner",
 						["ai"] = "@conditional.outer",
-						["il"] = "@loop.inner",
-						["al"] = "@loop.outer",
+						-- Collision with [i]nner [l]ast from mini.ai
+						-- ["il"] = "@loop.inner",
+						-- ["al"] = "@loop.outer",
 						["at"] = "@comment.outer",
 					},
 

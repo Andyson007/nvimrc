@@ -51,6 +51,7 @@ keymap("n", "<leader>bQ", "<cmd>bd!<CR>", { desc = "force close the buffer" })
 keymap("n", "<leader>bn", "<cmd>bn<CR>")
 keymap("n", "<leader>bp", "<cmd>bp<CR>")
 
+-- Clipboard stuff
 keymap({ "n", "v" }, "<leader>y", [["+y]], { desc = "[Y]ank to system clipboard" })
 keymap({ "n", "v" }, "<leader>Y", [["+Y]], { desc = "[Y]ank to system clipboard" })
 
@@ -88,5 +89,10 @@ keymap("n", "<leader>ms", "<cmd>CellularAutomaton scramble<CR>")
 keymap("n", "<leader>l", "<cmd>Lazy<CR>")
 keymap("n", "<leader>m", "<cmd>Mason<CR>")
 
+-- Tab utils
 keymap("n", "<leader>tn", "<cmd>tabnext<CR>")
 keymap("n", "<leader>tp", "<cmd>tabprevious<CR>")
+
+-- Indentation
+keymap("n", "<<leader>", "<<", {desc = "Indent left"})
+keymap("n", "><leader>", ">>", {desc = "Indent right"})
