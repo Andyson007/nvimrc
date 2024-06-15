@@ -69,7 +69,4 @@ else
 end
 opt.shadafile = "NONE"
 
-vim.cmd([[ let g:netrw_list_hide = '^\.\.\?/$' ]])
 vim.opt.conceallevel = 1
-
-vim.cmd [[set laststatus=3]]
