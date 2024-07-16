@@ -6,8 +6,17 @@ return {
   dependencies = {
     { "j-hui/fidget.nvim", opts = {} },
     { "folke/neodev.nvim", opts = {} },
+    {
+      "SmiteshP/nvim-navbuddy",
+      dependencies = {
+        "SmiteshP/nvim-navic",
+        "MunifTanjim/nui.nvim"
+      },
+      opts = { lsp = { auto_attach = true } }
+    }
   },
   config = function(opts)
+    vim.keymap.set("n", "<leader>na", "<cmd>Navbuddy<cr>")
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
@@ -57,7 +66,7 @@ return {
         if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
           vim.keymap.set("n", "<leader>th", function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, {desc = "[T]oggle Inlay [H]ints"})
+          end, { desc = "[T]oggle Inlay [H]ints" })
         end
       end,
     })
@@ -67,7 +76,7 @@ return {
 
     local lsp = require("lspconfig")
 
-    for key, value in pairs({ lsp.tsserver, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.taplo, lsp.sqlls, lsp.jsonls, lsp.bashls }) do
+    for key, value in pairs({ lsp.tsserver, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.taplo, lsp.sqlls, lsp.jsonls, lsp.bashls, lsp.hls }) do
       value.setup {
         capabilities = capabilities,
       }

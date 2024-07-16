@@ -5,5 +5,4 @@ return {
 	{ import = "plugins.utils.gitsigns" },
 	{ import = "plugins.utils.minor" },
 	{ import = "plugins.utils.leap-flash" },
-	{ import = "plugins.utils.oil" },
 }
