@@ -18,6 +18,7 @@ require("lazy").setup({
 	{ import = "plugins.styling" },
 	{ import = "plugins.utils" },
 	{ import = "plugins.external.obsidian" },
+	{ import = "plugins.external.markdown" },
 	{
 		"mfussenegger/nvim-lint",
 		config = function()
