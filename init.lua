@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- { "tpope/vim-sleuth" },
+	{ "tpope/vim-vinegar" },
 	{ import = "plugins.lsp" },
 	{ import = "plugins.styling" },
 	{ import = "plugins.utils" },

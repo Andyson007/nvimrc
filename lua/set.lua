@@ -39,6 +39,8 @@ opt.scrolloff = 4
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
+vim.g.netrw_banner = 0;
+
 opt.updatetime = 100
 
 opt.colorcolumn = "80"
