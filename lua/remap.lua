@@ -60,8 +60,6 @@ keymap({ "n", "v" }, "<leader>P", [["*P]])
 
 keymap({ "n", "v" }, "<leader>d", [["_d]])
 
-keymap("n", "Q", "<nop>")
-
 keymap("n", "<leader>cn", "<cmd>cnext<CR>zz")
 keymap("n", "<leader>cp", "<cmd>cprev<CR>zz")
 keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
