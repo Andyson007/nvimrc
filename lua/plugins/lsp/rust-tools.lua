@@ -51,4 +51,10 @@ return {
       )
     end,
   },
+  {
+    "Canop/nvim-bacon",
+    config = function() 
+      vim.keymap.set("n", "<leader>ba", "<cmd>BaconList<cr>")
+    end
+  }
 }
