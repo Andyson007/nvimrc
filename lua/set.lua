@@ -69,6 +69,5 @@ if vim.loop.os_uname().sysname == "Windows_NT" then
 else
 	opt.undodir = "/tmp/undo"
 end
-opt.shadafile = "NONE"
 
 vim.opt.conceallevel = 1
