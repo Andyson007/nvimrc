@@ -54,6 +54,7 @@
   "todo-comments.nvim": { "branch": "main", "commit": "51e10f838e84b4756c16311d0b1ef0972c6482d2" },
   "transparent.nvim": { "branch": "main", "commit": "fd35a46f4b7c1b244249266bdcb2da3814f01724" },
   "trouble.nvim": { "branch": "main", "commit": "e0b35a273df58b03612255783cf475a782ede7e0" },
+  "vim-fugitive": { "branch": "master", "commit": "0444df68cd1cdabc7453d6bd84099458327e5513" },
   "vim-undodir-tree": { "branch": "master", "commit": "f5cd1779b1a3969ba8b09a041863538b08e7ff32" },
   "vim-vinegar": { "branch": "master", "commit": "bb1bcddf43cfebe05eb565a84ab069b357d0b3d6" }
 }
