@@ -1,10 +1,7 @@
 return {
-  'Everblush/nvim',
-  name = "eveblush",
+  "Everblush/nvim",
+  name = "everblush",
   priority = 1000,
-  init = function()
-    vim.cmd("colorscheme everblush")
-  end,
   config = function()
     require("everblush").setup({
       transparent = true,
@@ -15,6 +12,10 @@ return {
         keywords = { italic = true },
       },
     })
+    vim.cmd("colorscheme everblush")
+    vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = "lightgreen" })
+    vim.api.nvim_set_hl(0, 'LineNr', { fg = "green" })
+    vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = "lightred" })
+    vim.opt.cursorline = false
   end,
 }
-

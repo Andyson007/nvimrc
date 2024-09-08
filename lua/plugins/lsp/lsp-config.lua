@@ -76,7 +76,7 @@ return {
 
     local lsp = require("lspconfig")
 
-    for key, value in pairs({ lsp.tsserver, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.taplo, lsp.sqlls, lsp.jsonls, lsp.bashls, lsp.hls, lsp.nixd, lsp.csharp_ls }) do
+    for key, value in pairs({ lsp.tsserver, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.taplo, lsp.sqlls, lsp.jsonls, lsp.bashls, lsp.hls, lsp.nixd, lsp.csharp_ls, lsp.asm_lsp }) do
       value.setup {
         capabilities = capabilities,
       }
