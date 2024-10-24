@@ -4,5 +4,5 @@ return {
 	{ import = "plugins.lsp.rust-tools" },
 	{ import = "plugins.lsp.dap" },
 	{ import = "plugins.lsp.signature" },
-	{ import = "plugins.lsp.conform" },
+	-- { import = "plugins.lsp.conform" },
 }

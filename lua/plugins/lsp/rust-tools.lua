@@ -18,6 +18,12 @@ return {
                 },
               },
             },
+            check = {
+              allTargets = false,
+            },
+            cargo = {
+              allTargets = false,
+            },
           },
         },
       },
@@ -53,7 +59,7 @@ return {
   },
   {
     "Canop/nvim-bacon",
-    config = function() 
+    config = function()
       vim.keymap.set("n", "<leader>ba", "<cmd>BaconList<cr>")
     end
   }

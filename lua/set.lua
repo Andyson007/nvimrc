@@ -1,4 +1,5 @@
 vim.g.have_nerd_font = true
+-- vim.g.user_emmet_leader_key = '<C-Z>'
 
 local opt = vim.opt
 
@@ -58,8 +59,8 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 if vim.loop.os_uname().sysname == "Windows_NT" then
-	opt.undodir = "C:/Users/Andy/temp/.vim/undodir"
-	vim.cmd([[
+  opt.undodir = "C:/Users/Andy/temp/.vim/undodir"
+  vim.cmd([[
 		let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
 		let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';'
 		let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
@@ -67,7 +68,7 @@ if vim.loop.os_uname().sysname == "Windows_NT" then
 		set shellquote= shellxquote=
   ]])
 else
-	opt.undodir = "/tmp/undo"
+  opt.undodir = "/tmp/undo"
 end
 
 vim.opt.conceallevel = 1
