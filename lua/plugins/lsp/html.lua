@@ -1,11 +1,11 @@
 return {
-	{
-		"windwp/nvim-ts-autotag",
-		event = { "InsertEnter" },
-		opts = {},
-	},
-	{
-		"mattn/emmet-vim",
-		event = "InsertEnter",
-	},
+  {
+    "windwp/nvim-ts-autotag",
+    event = { "InsertEnter" },
+    opts = {},
+  },
+  {
+    "mattn/emmet-vim",
+    event = "InsertEnter",
+  },
 }
