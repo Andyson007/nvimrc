@@ -7,16 +7,25 @@ return {
     { "j-hui/fidget.nvim", opts = {} },
     { "folke/neodev.nvim", opts = {} },
     {
-      "SmiteshP/nvim-navbuddy",
-      dependencies = {
-        "SmiteshP/nvim-navic",
-        "MunifTanjim/nui.nvim"
+      "hedyhli/outline.nvim",
+      opts = {
+        preview_window = {
+          auto_preview = true,
+        }
       },
-      opts = { lsp = { auto_attach = true } }
+      config = function(_, opts)
+        -- Example mapping to toggle outline
+        vim.keymap.set("n", "<leader>na", "<cmd>Outline<CR>",
+          { desc = "Toggle Outline" })
+
+        require("outline").setup (
+          opts
+          -- Your setup opts here (leave empty to use defaults)
+        )
+      end,
     }
   },
   config = function(opts)
-    vim.keymap.set("n", "<leader>na", "<cmd>Navbuddy<cr>")
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)

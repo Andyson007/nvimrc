@@ -21,9 +21,12 @@ return {
         },
       },
       sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = { "filename" },
+        lualine_a = { "branch" },
+        lualine_b = { "diff", "diagnostics" },
+        lualine_c = { {
+          "filename",
+          path = 4
+        } },
         lualine_x = { "encoding", "filesize", "filetype" },
         lualine_y = { "progress" },
         lualine_z = { "location" },
@@ -31,21 +34,13 @@ return {
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { "filename" },
+        lualine_c = {},
         lualine_x = { "location" },
         lualine_y = {},
         lualine_z = {},
       },
       tabline = {},
-      winbar = {
-        lualine_c = {
-          {
-            "navic",
-            color_correction = nil,
-            navic_opts = nil,
-          },
-        },
-      },
+      winbar = {},
       inactive_winbar = {},
       extensions = {},
     })
