@@ -24,7 +24,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
           require("telescope.themes").get_dropdown(),
         },
         fzf = {
-          fuzzy = true,              -- false will only do exact matching
+          fuzzy = true,                   -- false will only do exact matching
           override_generic_sorter = true, -- override the generic sorter
           override_file_sorter = true,
           case_mode = "smart_case",
@@ -32,8 +32,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
       },
     })
 
-    pcall(require("telescope").load_extension, "fzf")
-    pcall(require("telescope").load_extension, "ui-select")
+    require("telescope").load_extension("fzf")
+    require("telescope").load_extension("ui-select")
 
     local builtin = require("telescope.builtin")
 
@@ -65,7 +65,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set("n", "<leader>p:", builtin.command_history, { desc = "Command history" })
     vim.keymap.set("n", "<leader>p/", builtin.search_history, { desc = "Search history" })
     vim.keymap.set("n", "<leader>pb", builtin.buffers, { desc = "[P]roject [B]uffers" })
-    vim.keymap.set("n", "<leader>po", builtin.oldfiles, { desc = "" })
+    vim.keymap.set("n", "<leader>po", builtin.oldfiles, { desc = "[P]roject [O]ld" })
     vim.keymap.set("n", "<leader>vi", builtin.vim_options, { desc = "[VI]m options" })
     vim.keymap.set("n", "<leader>gp", builtin.git_files, { desc = "All files in the current git repo" })
     vim.keymap.set("n", "<leader>pp", builtin.jumplist, { desc = "jumplist" })
@@ -78,7 +78,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
       builtin.git_status,
       { desc = "[G]it [S]tatus (Shows all buffers and their status)" }
     )
-    vim.keymap.set("n", "<leader>gt", builtin.git_stash, { desc = "[G]it s[T]ashe" })
+    vim.keymap.set("n", "<leader>gt", builtin.git_stash, { desc = "[G]it s[T]ash" })
     vim.keymap.set("n", "<leader>pg", builtin.live_grep, { desc = "[P]roject [G]rep" })
     vim.keymap.set("n", "<leader>ps", function()
       builtin.grep_string({ search = vim.fn.input("Grep > ") })
@@ -104,7 +104,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     end, { desc = "[S]earch [N]eovim files" })
 
     vim.keymap.set("n", "<leader>si", function()
-      builtin.find_files({ cwd = "~/.nixrc"})
+      builtin.find_files({ cwd = "~/.nixrc" })
     end, { desc = "[S]earch [N]eovim files" })
   end,
 }

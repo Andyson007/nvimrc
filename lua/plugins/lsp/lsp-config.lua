@@ -6,6 +6,7 @@ return {
   dependencies = {
     { "j-hui/fidget.nvim", opts = {} },
     { "folke/neodev.nvim", opts = {} },
+    {"aznhe21/actions-preview.nvim", opts = {}},
     {
       "hedyhli/outline.nvim",
       opts = {
@@ -41,7 +42,7 @@ return {
         map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
         map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-        map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+        map("<leader>ca", require("actions-preview").code_actions, "[C]ode [A]ction")
         map("K", vim.lsp.buf.hover, "Hover Documentation")
         map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
