@@ -16,6 +16,7 @@ return { -- Autocompletion
     local cmp = require("cmp")
     local luasnip = require("luasnip")
     luasnip.config.setup({})
+    vim.keymap.set("n", "<leader>ot", "<cmd>lua require('luasnip.extras.otf').on_the_fly(\"e\")<cr>")
 
     local kind_icons = {
       calc = "󰃬",
