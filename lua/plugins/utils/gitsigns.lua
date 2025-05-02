@@ -94,9 +94,6 @@ return {
 					gs.diffthis("~")
 				end)
 				map("n", "<leader>td", gs.toggle_deleted, {desc = "[t]oggle [d]eleted lines (this includes changed)"})
-
-				-- Text object
-				map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 			end,
 		})
 	end,

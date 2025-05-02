@@ -10,7 +10,7 @@ return {
 	{
 		"echasnovski/mini.nvim",
 		config = function()
-			-- Improves i/a movements as in w[i]p w[a]p
+			-- Improves i/a movements as in v[i]p v[a]p
 			require("mini.ai").setup({ n_lines = 500 })
 		end,
 	},
