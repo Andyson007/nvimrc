@@ -7,43 +7,38 @@ keymap("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostic [
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-vim.g.user_emmet_update_tag = "<C-Z>u"
-
-vim.g.user_emmet_next_key = "<C-n>"
-
 keymap({ "i", "v" }, "uh", "<Esc>", { desc = "Exit insert/visual mode" })
 
 vim.cmd([[cnoreabbrev t2 set tabstop=2 softtabstop=2 shiftwidth=2]])
 vim.cmd([[cnoreabbrev t4 set tabstop=4 softtabstop=4 shiftwidth=4]])
 vim.cmd([[cnoreabbrev t8 set tabstop=8 softtabstop=8 shiftwidth=8]])
 
-vim.cmd([[map H ^]])
-vim.cmd([[map L $]])
-
+-- scrolling
 keymap("n", "<C-d>", "<C-d>zz")
 keymap("n", "<C-u>", "<C-u>zz")
 keymap("n", "n", "nzz")
 keymap("n", "N", "Nzz")
 
-keymap("n", "<leader>;", "A;<Esc>")
-
+-- quitting
 keymap("n", "<leader>w", "<cmd>w<CR>", { desc = "soft save" })
 keymap("n", "<leader>W", "<cmd>w!<CR>", { desc = "hard save" })
 keymap("n", "<leader>q", "<cmd>q<CR>", { desc = "soft quit" })
 keymap("n", "<leader>Q", "<cmd>q!<CR>", { desc = "hard quit" })
 
+-- Window movement
 keymap("n", "<C-h>", "<C-w>h")
 keymap("n", "<C-j>", "<C-w>j")
 keymap("n", "<C-k>", "<C-w>k")
 keymap("n", "<C-l>", "<C-w>l")
 
---buffer utils
+-- buffer utils
 keymap("n", "<leader>bq", "<cmd>bd<CR>", { desc = "close this buffer" })
 keymap("n", "<leader>bQ", "<cmd>bd!<CR>", { desc = "force close the buffer" })
 
 keymap("n", "<leader>bn", "<cmd>bn<CR>")
 keymap("n", "<leader>bp", "<cmd>bp<CR>")
 
+-- Deleting to void 
 keymap({ "n", "v" }, "<leader>d", [["_d]])
 keymap({ "n", "v" }, "<leader>c", [["_c]])
 
@@ -64,6 +59,7 @@ end)
 
 -- Self descriptive
 keymap("n", "<leader>l", "<cmd>Lazy<CR>")
+keymap("n", "<leader>;", "A;<Esc>")
 
 -- Tab utils
 keymap("n", "<leader>tn", "<cmd>tabnext<CR>")
