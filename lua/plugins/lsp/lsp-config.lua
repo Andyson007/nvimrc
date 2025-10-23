@@ -85,24 +85,21 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 
-    local lsp = require("lspconfig")
+    local lsp = vim.lsp.config
 
     for key, value in pairs({ lsp.ts_ls, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.emmet_ls, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.taplo, lsp.sqlls, lsp.jsonls, lsp.bashls, lsp.hls, lsp.nixd, lsp.csharp_ls, lsp.intelephense, lsp.asm_lsp, lsp.dartls, lsp.arduino_language_server, lsp.svelte, lsp.tinymist }) do
-      value.setup {
-        capabilities = capabilities,
-      }
+      value.capabilities = capabilities
     end
 
-    require 'lspconfig'.lua_ls.setup {
-      settings = {
-        Lua = {
-          completion = {
-            callSnippet = "Replace",
-          },
-          -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-          -- diagnostics = { disable = { 'missing-fields' } },
+    vim.lsp.config.lua_ls.settings = {
+      Lua = {
+        completion = {
+          callSnippet = "Replace",
         },
-      }
+        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+        -- diagnostics = { disable = { 'missing-fields' } },
+      },
     }
+
   end,
 }
