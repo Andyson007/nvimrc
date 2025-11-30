@@ -1,6 +1,14 @@
 return {
   "nvim-lualine/lualine.nvim",
   config = function()
+    local function wordcount()
+        return tostring(vim.fn.wordcount().words)
+    end
+
+    local function is_markdown()
+        return vim.bo.filetype == "markdown" or vim.bo.filetype == "typst" or vim.bo.filetype == "asciidoc" or vim.bo.filetype == ""
+    end
+
     require("lualine").setup({
       options = {
         globalstatus = true,
@@ -29,7 +37,10 @@ return {
         } },
         lualine_x = { "encoding", "filesize", "filetype" },
         lualine_y = { "progress" },
-        lualine_z = { "location" },
+        lualine_z = { 
+          { wordcount,   cond = is_markdown },
+          "location"
+        },
       },
       inactive_sections = {
         lualine_a = {},
