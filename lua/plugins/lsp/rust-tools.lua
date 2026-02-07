@@ -9,20 +9,13 @@ return {
         default_settings = {
           -- rust-analyzer language server configuration
           ['rust-analyzer'] = {
-            procMacro = {
-              ignored = {
-                leptos_macro = {
-                  -- optional: --
-                  -- "component",
-                  "server",
-                },
-              },
-            },
             check = {
               allTargets = false,
+              command = "clippy",
             },
             cargo = {
               allTargets = false,
+              features = "all",
             },
           },
         },

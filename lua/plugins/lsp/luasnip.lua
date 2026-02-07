@@ -38,11 +38,67 @@ return {
     local ms = ls.multi_snippet
     local k = require("luasnip.nodes.key_indexer").new_key
 
+    vim.keymap.set({"i", "s"}, "<C-d>", function()
+      if ls.choice_active() then
+        ls.change_choice(1)
+      end
+    end, {silent = true})
+
+    vim.keymap.set({"i", "s"}, "<C-@>", function() ls.jump( 1) end, {silent = true})
+    vim.keymap.set({"i", "s"}, "<C-->", function() ls.jump(-1) end, {silent = true})
+
     ls.add_snippets("all", {
       s("ternary", {
         -- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
         i(1, "cond"), t(" ? "), i(2, "then"), t(" : "), i(3, "else")
       })
+    })
+    ls.add_snippets("rust", {
+      s("aoc", {
+        t({
+          "fn main() {",
+          "    let ans = solve(include_str!(\"../../input\"));",
+          "    println!(\"{ans}\")";
+          "}",
+          "",
+          "pub fn solve(input: &str) -> usize {",
+          "    ",
+        }),
+        i(0, "todo!()"),
+        t({
+          "",
+          "}",
+          "",
+          "#[cfg(test)]",
+          "mod test {",
+          "    use crate::solve;",
+          "",
+          "    #[test]",
+          "    fn example() {",
+          "        let ans = solve(r\"\");",
+          "        assert_eq!(ans, todo!())",
+          "    }",
+          "}",
+        }),
+      }),
+      s("main", {
+        t({"fn main() {", "    "}),
+        i(1),
+        t({"", "}"}),
+      }),
+      s("readline", {
+        c(1, {
+          t({"buf.clear();", ""}), 
+          t({"let mut buf = String::new();", ""})
+        }),
+        t({"io::stdin().read_line(&mut buf).unwrap();", ""})
+      }),
+      s("parse", {
+        t("let "), i(1), t(" = buf.trim().parse::<"), c(2, {t("usize"), t("isize")}), t({">().unwrap();", ""})
+      }),
+      s("parselist", {
+        t("let "), i(1, "items"), t(": Vec<_> = buf.split_whitespace().map(|x| "), i(2, "x.parse::<usize>().unwrap()"), t({").collect();", ""})
+      }),
     })
   end,
   dependencies = {},

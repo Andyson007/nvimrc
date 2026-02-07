@@ -27,10 +27,11 @@ return {
     --
     -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
-      preset = 'default',
+      preset = 'none',
       ["<C-t>"] = { 'accept' },
       ["<C-n>"] = { 'select_next' },
       ["<C-h>"] = { 'select_prev' },
+      ["<C-b>"] = { 'scroll_documentation_down' }
     },
 
     appearance = {

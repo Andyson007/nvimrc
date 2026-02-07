@@ -137,15 +137,18 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.install").prefer_git = true
-      ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup(opts)
-
-      -- There are additional nvim-treesitter modules that you can use to interact
-      -- with nvim-treesitter. You should go explore a few and see what interests you:
-      --
-      --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-      --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-      --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.ktane = {
+        install_info = {
+          url = "file:///home/andy/tree-sitter/tree-sitter-ktane/",
+          branch = "main",
+          generate = true,
+          files = {"src/parser.c"},
+          queries = {'queries/ktane'}, -- symlink queries from given directory
+        },
+        filetype = "ktane",
+      }
     end,
   },
   {

@@ -82,13 +82,9 @@ return {
       end,
     })
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
-
-    local lsp = vim.lsp.config
-
-    for key, value in pairs({ lsp.ts_ls, lsp.biome, lsp.html, lsp.emmet_language_server, lsp.emmet_ls, lsp.cssls, lsp.tailwindcss, lsp.clangd, lsp.taplo, lsp.sqlls, lsp.jsonls, lsp.bashls, lsp.hls, lsp.nixd, lsp.csharp_ls, lsp.intelephense, lsp.asm_lsp, lsp.dartls, lsp.arduino_language_server, lsp.svelte, lsp.tinymist }) do
-      value.capabilities = capabilities
+    for key, value in pairs({"ts_ls", "biome", "html", "emmet_language_server", "emmet_ls", "cssls", "tailwindcss", "clangd", "taplo", "sqlls", "jsonls", "bashls", "hls", "nixd", "csharp_ls", "intelephense", "asm_lsp", "dartls", "arduino_language_server", "svelte", "tinymist", "omnisharp", "qmlls", "pylsp" }) do
+      -- vim.lsp.enable(value)
+      vim.lsp.enable(value)
     end
 
     vim.lsp.config.lua_ls.settings = {
@@ -101,5 +97,10 @@ return {
       },
     }
 
+    vim.lsp.config('ktane', {
+      cmd = { '/home/andy/projects/ktane-ls/target/release/ktane-ls' },
+      filetypes = {'ktane'},
+    })
+    vim.lsp.enable('ktane')
   end,
 }
