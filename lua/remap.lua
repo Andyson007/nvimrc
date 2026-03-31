@@ -27,9 +27,9 @@ keymap("n", "<leader>Q", "<cmd>q!<CR>", { desc = "hard quit" })
 
 -- Window movement
 keymap("n", "<C-h>", "<C-w>h")
-keymap("n", "<C-j>", "<C-w>j")
-keymap("n", "<C-k>", "<C-w>k")
-keymap("n", "<C-l>", "<C-w>l")
+keymap("n", "<C-n>", "<C-w>j")
+keymap("n", "<C-t>", "<C-w>k")
+keymap("n", "<C-s>", "<C-w>l")
 
 -- buffer utils
 keymap("n", "<leader>bq", "<cmd>bd<CR>", { desc = "close this buffer" })

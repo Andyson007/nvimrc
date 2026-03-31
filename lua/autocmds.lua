@@ -52,16 +52,35 @@ vim.api.nvim_create_autocmd(
   {
     pattern = 'ktane',
     callback = function(ev)
-      function custom_fold_text()
-        local first_line = vim.fn.getline(vim.v.foldstart)
-        local name = string.gmatch(first_line, '([^(]*)')()
-        local return_value = get_return_line()
-        local line_count = vim.v.foldend - vim.v.foldstart + 1
-        
-        return name .. ' -> ' .. return_value .. ' ⚡' .. line_count .. ' lines'
-      end
-      vim.opt.foldtext = 'v:lua.custom_fold_text()'
-      vim.api.nvim_set_hl(0, 'Folded', { fg = "lightgreen" })
+      -- function custom_fold_text()
+      --   local first_line = vim.fn.getline(vim.v.foldstart)
+      --   local name = string.gmatch(first_line, '([^(]*)')()
+      --   local return_value = get_return_line()
+      --   local line_count = vim.v.foldend - vim.v.foldstart + 1
+      --   
+      --   return name .. ' -> ' .. return_value .. ' ⚡' .. line_count .. ' lines'
+      -- end
+      -- vim.opt.foldtext = 'v:lua.custom_fold_text()'
+      -- vim.api.nvim_set_hl(0, 'Folded', { fg = "lightgreen" })
+      require('lualine').hide()
+      vim.cmd[[set nonumber]]
+      vim.cmd[[set nornu]]
+      vim.cmd[[set cmdheight=0]]
+      vim.cmd[[set nohlsearch]]
+      vim.cmd[[TSDisable highlight]]
+      vim.cmd[[TSBufDisable highlight]]
+      vim.opt.fillchars = {
+        vert = " ", 
+        horiz = " ",
+        fold = " ",
+        eob = " ",
+        diff = " ",
+        msgsep = " ",
+        foldopen = " ",
+        foldsep = " ",
+        foldclose = " ",
+      }
+      vim.b.completion = false
     end
   }
 )
